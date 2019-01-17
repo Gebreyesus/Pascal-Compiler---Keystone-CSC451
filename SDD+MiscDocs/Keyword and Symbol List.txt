@@ -1,0 +1,60 @@
+# Beteab Gebru
+# Compilers I
+# Scanner Usign Jflex
+# Symbols and Keywords list
+
+######### KeyWords
+1. Program
+2. var
+3. ID
+4. array
+5. integer
+6. real
+7. function
+8. procedure
+9. begin
+10. end
+11. assignop
+12. if
+13. then
+14. else
+15. while
+16. do
+17. relop
+18. addop
+19. mulop
+20. num
+21. not
+######## Symbols
+1. and 
+2. or
+3. +
+4. -
+5. *
+6. div
+7. mod
+8. :=
+9. <>
+10. <
+11. >
+12. <=
+13. >=
+14. |
+15. (lambda)
+16. ->
+17. }
+18. {
+19. /
+20. [
+21. ]
+22. \/
+23. ; 
+24. ,
+25. -
+26. :
+27. ( 
+28. )
+
+
+
+ 

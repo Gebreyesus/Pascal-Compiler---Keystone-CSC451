@@ -1,0 +1,13 @@
+String filename = args[0];
+        FileInputStream fis = null;
+        try 
+            {
+                fis = new FileInputStream( filename);
+            } 
+        catch (Exception e ) 
+            { 
+                e.printStackTrace();
+            }
+        InputStreamReader isr = new InputStreamReader( fis);
+        MyScannerTwo scanner = new MyScannerTwo( isr);
+        Token aToken = null;
