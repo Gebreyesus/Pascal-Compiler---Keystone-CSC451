@@ -4,3 +4,4 @@
 
 *.class
 *.jar
+/SRC/Scanner/BeteabScanner/nbproject/private/

@@ -1,0 +1,7 @@
+Program My_Program;
+Var 
+    Number1, Number2,
+Number3,  Sum : Integer;
+
+Begin {comment without semicolon}
+123
