@@ -1,13 +1,12 @@
-/**
- * 
- */
+
 package tests;
 
 /**
- * @author beteab gebru
- *
+ *  @author Beteab Gebru
  */
-public class scannerTest {
+
+
+public class ScannerTest {
 
 	/**
 	 * @param args
