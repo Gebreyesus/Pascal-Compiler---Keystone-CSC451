@@ -1,7 +1,8 @@
 ﻿######################################################
 # Ignoring various files from the IDE(Eclipse) #
 ######################################################
-
+.classpath
+.project
 .metadata
 bin/
 tmp/
@@ -57,3 +58,6 @@ local.properties
 .cache-main
 .scala_dependencies
 .worksheet
+
+
+.vs
