@@ -23,6 +23,11 @@ public enum TokenType {
 	RELOP,
 	ADDOP,
 	MULOP,
+	EQUAL,
+	LESSTHAN,
+	GREATERTHAN,
+    LESSOREQUAL,
+    GREATEROREQUAL, 
     
 	PROGRAM, 
 	VAR,

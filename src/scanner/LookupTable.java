@@ -29,7 +29,11 @@ public class LookupTable extends HashMap<String,TokenType>
         this.put( "+", TokenType.ADDOP); 
         this.put( "%", TokenType.MOD);
         this.put( "&", TokenType.AND);
-        
+        this.put( "<", TokenType.LESSTHAN);
+        this.put( ">", TokenType.GREATERTHAN);
+        this.put( "<=", TokenType.LESSOREQUAL);
+        this.put( ">=", TokenType.GREATEROREQUAL);
+        this.put( "=", TokenType.EQUAL);
         
     	//RELOP
     	

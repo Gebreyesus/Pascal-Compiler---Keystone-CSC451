@@ -1,10 +1,7 @@
- 
-/**
- * This file defines lexical analyzer that will be used with the pasal compiler
- */
-
 package scanner;
 /**
+ * This file defines lexical analyzer that will be used with the pasal compiler
+ * it will recognise tokens defined in grammer manual set at the begining of project
  * @author Beteab Gebru
  */
 %%
@@ -12,9 +9,9 @@ package scanner;
 /////////// JFlex Directives  ////////////////
 
 %public                     // make output class public
-%class  Scanner   /* Names the produced java file */
-%function nextToken /* new name for  the yylex() function */
-%type   Token      /* Defines the return type of the scanning function */
+%class  myScannerfromJFLEX   /* Names the produced java file */
+%function nextToken			 /* new name for  the yylex() function */
+%type   Token      			/* Defines the return type of the scanning function */
 %line                       // turn on line counting
 %column                     // turn on column counting
 
@@ -40,61 +37,62 @@ package scanner;
    */
   public int getColumn() { return yycolumn;}
   
-  /** The lookup table of token types for symbols. */
+ /** The lookup table of token types for symbols. */
   private LookupTable table = new LookupTable();
   
 %}
 
-/* Patterns defined using regex expressions 
-/* this definitions are exctracted 
-/* from a grammer provided as input for the project
+/** Patterns defined using regex expressions 
+    this definitions are exctracted 
+    from a grammer provided as input for the project	*/
 
 
 other         = .
 letter        = [A-Za-z]
-word          = {letter}+ | {letter}+[0-9]+{letter}*
+digit      	  = [0-9]
 
-lineTerminator = |\n|\n
+lineTerminator = \n
 whitespace     = {lineTerminator} | [ \t]
 
-symbols       = [ ";" | "," | "." | ":" | "[" | "]" | "(" | ")" | "+" | "-" | 
-                  "=" | "<>" | "<" | "<=" | ">" | ">=" | "*" | "/" | ":=" ]
+symbols       = [ ";" | "," | "." | ":" | "[" | "]" | "(" | ")" | "+" | "-" | "=" | "<>" | "<" | "<=" | ">" | ">=" | "*" | "/" | ":=" ]
 
-integer 	=  [0-9] | [1-9][0-9]*
-float 		=      [0-9]+ \. [0-9]*
-positiveExp 	=    [0-9]+ "E" [0-9]* | [0-9]+ "E+" [0-9]*
-negativeExp 	=    [0-9]+ "E-" [0-9]*
+
+integer 		=  [0-9] | [1-9][0-9]*
+posExpression 	=    [0-9]+ "E" [0-9]* | [0-9]+ "E+" [0-9]*
+negExpression 	=    [0-9]+ "E-" [0-9]*
+
+word          = {letter}+ | {letter}+[0-9]+{letter}*
+number     =	 {digit}+ | {integer}+ | {posExpression}+ | {negExpression}+
 
 comment =    [{] [^*] ~ [}]
-
 
 
 %%
 /* Lexical Rules -> we will form the tokens and return the token object*/
 
 {whitespace}    { /* Ignore Whitespace */ }
-.               {   System.out.println("Illegal character, '" + yytext() + "' found."); }
-
+.               {   System.out.println("Illegal character, whitespace'" + yytext() + "' found."); }
 
 {number}        {	// Found a number
-					Token t = new Token( yytext(), TokenType.NUMBER); 
-					return t;
+					Token newToken = new Token( yytext(), TokenType.NUMBER); 
+					return newToken;
                 }
 
 {integer}    	{ 
-					Token t ( new Token( yytext(), TokenType.INTEGER ));
-					return t;
+					Token newToken ( new Token( yytext(), TokenType.INTEGER ));
+					return newToken;
 				}
 
 
-{symbols}       {	// Found a symbol
+{symbols}       {	// Found a symbol - find lexeme from lookup table
                     String inputLexeme = yytext();
-                    TokenType ett = table.get( inputLexeme);	//find the token type from lookup table
-                    Token t = new ExpToken( yytext(),  ett);
-                    return t;
+                    TokenType symbolLexeme = table.get( inputLexeme);	//find the token type from lookup table
+                    Token newToken = new Token( yytext(),  symbolLexeme);
+                    return newToken;
                 }
 
-{word}     		{ 
-					Token t(new Token( yytext(), TokenType.ID ));
-					return t;
-		   		}
+{word}     		{ 	Token newToken(new Token( yytext(), TokenType.ID ));		return newToken;}
+		   		
+{posExpression}	{ Token newToken = new Token( yytext(), posExpression);	return newToken; }
+	
+{negExpression}	{ Token newToken = new Token( yytext(), negExpression);	return newToken;  }	
