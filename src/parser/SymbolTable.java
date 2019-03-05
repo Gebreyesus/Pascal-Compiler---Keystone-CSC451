@@ -186,10 +186,8 @@ public class SymbolTable
 	}
 
 	/**
-	 * determines whether or not the symbol is an array
-	 * 
-	 * @param the
-	 *            name of the symbol to be determined
+	 * returns true if given symbol is an array
+	 * @param the name of the symbol to be determined
 	 * @return whether or not the symbol is an array
 	 */
 	public Boolean isArrayName(String symbolName) 
@@ -209,8 +207,7 @@ public class SymbolTable
 	}
 
 	/**
-	 * gets the symbol table (linkedhashmap)
-	 * 
+	 * gets the symbol table (linkedhashmap) 
 	 * @return the symbol table
 	 */
 	public LinkedHashMap<String, SymbolType> getTable() 
