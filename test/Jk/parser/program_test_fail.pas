@@ -1,4 +1,0 @@
-Program Lesson;;
-Beginn
-
-End.

@@ -1,1 +1,0 @@
-var varName, anotherVarname; integer; 
