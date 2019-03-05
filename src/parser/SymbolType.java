@@ -1,13 +1,15 @@
 package parser;
 
 /**
- * Specification fot the types stored in the Symbol table 
+ * Specification for the types stored in the Symbol table 
  * @author Beteab Gebru
  */
-public enum SymbolType {
-	PROGRAMTYPE, 
+public enum SymbolType 
+{
+	
 	VARIABLETYPE, 
+	ARRAYTYPE,
+	PROCEDURETYPE,
 	FUNCTIONTYPE, 
-	PROCEDURETYPE, 
-	ARRAYTYPE
+	PROGRAMTYPE
 }

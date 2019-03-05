@@ -8,14 +8,14 @@ package scanner;
 
 /////////// JFlex Directives  ////////////////
 
-%public                     // make output class public
-%class  myScannerfromJFLEX   /* Names the produced java file */
-%function nextToken			 /* new name for  the yylex() function */
+%public                     /* make output class public*/
+%class  myScannerfromJFLEX  /* Names the produced java file */
+%function nextToken			/* renaming  the yylex() function */
 %type   Token      			/* Defines the return type of the scanning function */
-%line                       // turn on line counting
-%column                     // turn on column counting
+%line                       /* turn on line counting*/
+%column                     /* turn on column counting*/
 
-%eofval{ 	// return on end of file
+%eofval{ 	/* return on end of file */
   return null;
 %eofval}
 

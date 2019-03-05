@@ -50,53 +50,54 @@ public class ScannerTest
 		// instantiate the myScanner and setup a sample input 
 		String samplePascal = "5*5/2+5<100";
 		StringReader input =  new StringReader(samplePascal);
-
+		
 		myScannerfromJFLEX myScanner = new myScannerfromJFLEX(input);
-   
+		
+		//now we will test the nextToken() in our scanner against preset expectations
         myScanner.nextToken();
-        String expResult = "5";
+        String expectedResult = "5";
         String result = myScanner.yytext();
-        assertEquals(expResult, result);
+        assertEquals(expectedResult, result);
 
         myScanner.nextToken();
-        expResult = "*";
+        expectedResult = "*";
         result = myScanner.yytext();
-        assertEquals(expResult, result);
+        assertEquals(expectedResult, result);
 
         myScanner.nextToken();
-        expResult = " 5";
+        expectedResult = " 5";
         result = myScanner.yytext();
-        assertEquals(expResult, result);
+        assertEquals(expectedResult, result);
 
         myScanner.nextToken();
-        expResult = "/";
+        expectedResult = "/";
         result = myScanner.yytext();
-        assertEquals(expResult, result);
+        assertEquals(expectedResult, result);
 
         myScanner.nextToken();
-        expResult = "2";
+        expectedResult = "2";
         result = myScanner.yytext();
-        assertEquals(expResult, result);
+        assertEquals(expectedResult, result);
 
         myScanner.nextToken();
-        expResult = "+";
+        expectedResult = "+";
         result = myScanner.yytext();
-        assertEquals(expResult, result);
+        assertEquals(expectedResult, result);
         
         myScanner.nextToken();
-        expResult = "5";
+        expectedResult = "5";
         result = myScanner.yytext();
-        assertEquals(expResult, result);
+        assertEquals(expectedResult, result);
         
         myScanner.nextToken();
-        expResult = "<";
+        expectedResult = "<";
         result = myScanner.yytext();
-        assertEquals(expResult, result);
+        assertEquals(expectedResult, result);
 
         myScanner.nextToken();
-        expResult = "100";
+        expectedResult = "100";
         result = myScanner.yytext();
-        assertEquals(expResult, result);
+        assertEquals(expectedResult, result);
     }
     
 
@@ -112,6 +113,7 @@ public class ScannerTest
 
 		// verifying if the program will pickup tokens and identify them accordingly
 		//comments will be ignored 
+		
 		myToken = myScanner.nextToken();
 		System.out.println(myToken);
 		assertEquals(myToken.lexeme, "program");
