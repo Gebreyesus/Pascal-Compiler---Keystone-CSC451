@@ -79,20 +79,28 @@ comment =    [{] [^*] ~ [}]
                 }
 
 {integer}    	{ 
-					Token newToken ( new Token( yytext(), TokenType.INTEGER ));
+					Token newToken = new Token( yytext(), TokenType.INTEGER );
 					return newToken;
 				}
 
-
-{symbols}       {	// Found a symbol - find lexeme from lookup table
+{symbols}       {	// locate lexeme from lookup table for the symbol
                     String inputLexeme = yytext();
                     TokenType symbolLexeme = table.get( inputLexeme);	//find the token type from lookup table
                     Token newToken = new Token( yytext(),  symbolLexeme);
                     return newToken;
                 }
 
-{word}     		{ 	Token newToken(new Token( yytext(), TokenType.ID ));		return newToken;}
+{word}     		{ 	
+					Token newToken = new Token( yytext(), TokenType.ID );		
+					return newToken;
+				}
 		   		
-{posExpression}	{ Token newToken = new Token( yytext(), posExpression);	return newToken; }
+{posExpression}	{ 
+					Token newToken = new Token( yytext(), posExpression);	
+					return newToken; 
+				}
 	
-{negExpression}	{ Token newToken = new Token( yytext(), negExpression);	return newToken;  }	
+{negExpression}	{ 
+					Token newToken = new Token( yytext(), negExpression);	
+					return newToken;  
+				}	

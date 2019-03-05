@@ -1,0 +1,12 @@
+Program: BitcoinConversion
+|-- Declarations
+|-- --- Name: dollars (Expression Type: DATINTEGER)
+|-- SubProgramDeclarations
+|-- Compound Statement
+|-- --- Read 
+ |-- --- --- Name: dollars (Expression Type: DATINTEGER)
+|-- --- Write
+|-- --- --- operation: PLUS (Expression Type: DATINTEGER)
+|-- --- --- --- Name: dollars (Expression Type: DATINTEGER)
+|-- --- --- --- Value: 1 (Expression Type: DATINTEGER)
+
