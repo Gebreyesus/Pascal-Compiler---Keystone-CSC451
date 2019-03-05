@@ -19,7 +19,6 @@ import scanner.TokenType;
  *  @author Beteab Gebru
  *  will test the myScanner file.
  */
-
 public class ScannerTest 
 {
 
