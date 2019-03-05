@@ -627,7 +627,8 @@ public class myScannerfromJFLEX {
             }
           case 6: break;
           case 3: 
-            { Token newToken(new Token( yytext(), TokenType.ID ));		return newToken;
+            { Token newToken = new Token( yytext(), TokenType.ID );		
+					return newToken;
             }
           case 7: break;
           case 4: 

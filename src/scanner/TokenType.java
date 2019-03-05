@@ -7,34 +7,51 @@ package scanner;
  */
 public enum TokenType {
 	// keywords and symbols
-    PLUS,
-    MINUS,
-    MULTIPLY,
-    DIVIDE,
+
     LEFT_ROUND_PAREN,
     RIGHT_ROUND_PAREN,
     RIGHT_SQUARE_PAREN,
     LEFT_SQUARE_PAREN,
-    SEMICOLON,
-    COLON,
-    COMMA,
-    ASSIGNOP,
-    DOT, 
+    RIGHT_CURLY_PAREN,
+    LEFT_CURLY_PAREN,
+    
 	RELOP,
-	ADDOP,
-	MULOP,
 	EQUAL,
 	LESSTHAN,
 	GREATERTHAN,
     LESSOREQUAL,
-    GREATEROREQUAL, 
-    
+    GREATEROREQUAL,
+    NOTEQUAL,
+        
+	ADDOP,
+    PLUS,
+    MINUS,
+	OR,
+	
+    SEMICOLON,
+    COLON,
+    COMMA,
+    ASSIGNOP,
+    PERIOD, 
+	
+	MULOP,
+	MULTIPLY,
+    DIVIDE,
+    MOD,
+    AND,
+
+	NUMBER,
+	REAL,
+	INTEGER,
+	FLOAT,
+	POSEXP,
+	NEGEXP,
+	SIGN, 
+	
 	PROGRAM, 
 	VAR,
 	ID,
 	ARRAY,
-	INTEGER,
-	REAL,
 	FUNCTION,
 	PROCEDURE,	
 	BEGIN,
@@ -45,19 +62,8 @@ public enum TokenType {
 	ELSE,
 	WHILE,
 	DO,
-
-	NUM,
-	NOT,
-	AND,
-	OR,
-	MOD,
-	DIV,
 	OF,
-	FLOAT,
-	POSEXP,
-	NEGEXP,
- 
-	NUMBER,
-	SIGN, 
+	NOT,
+	
 	EOF, 
 }
