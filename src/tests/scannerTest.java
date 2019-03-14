@@ -26,16 +26,12 @@ public class ScannerTest
 	 * @throws java.lang.Exception
 	 */
 	@Before
-	public void setUpClass() throws Exception 
-	{
-	}
+	public void setUpClass() throws Exception 	{	}
 	/**
 	 * @throws java.lang.Exception
 	 */
 	@After
-	public void tearDownClass() throws Exception 
-	{
-	}
+	public void tearDownClass() throws Exception 	{	}
 
 	
 	/**
@@ -43,110 +39,89 @@ public class ScannerTest
 	 * and check if yytext()/nextToken function is interpreting the tokens.
 	 * @throws IOException
 	 */
+
 	
     @Test
     public void testYytext() throws IOException 
     {
-		// instantiate the myScanner and setup a sample input 
-		String samplePascal = "5*5/2+5<100";
-		StringReader input =  new StringReader(samplePascal);
-		
-		myScannerfromJFLEX myScanner = new myScannerfromJFLEX(input);
+        System.out.println("yytext");
+        FileInputStream fis = null;
+        try 
+        {
+            fis = new FileInputStream("C:\\\\Users\\\\betea\\\\Desktop\\\\Augsburg Projects folder\\\\0000 Git Projects\\\\Compilers II\\\\gebruCompiler\\\\Compilerproj\\\\src\\\\tests\\\\SampleInput\\\\ScannerSampleInput.pas");
+        } catch (FileNotFoundException ex) 
+        {
+        }
+        InputStreamReader isr = new InputStreamReader( fis);
+        myScannerfromJFLEX instance = new myScannerfromJFLEX(isr);
+        
+        instance.nextToken();
+        String expResult = "34";
+        String result = instance.yytext(); System.out.println("xxx"+result);
+        assertEquals(expResult, result);
+
+        instance.nextToken();
+        expResult = "+";
+        result = instance.yytext();System.out.println("xxx"+result);
+        assertEquals(expResult, result);
+
+        instance.nextToken();
+        expResult = "17";
+        result = instance.yytext();
+        assertEquals(expResult, result);
+
+        instance.nextToken();
+        expResult = "*";
+        result = instance.yytext();
+        assertEquals(expResult, result);
+
+        instance.nextToken();
+        expResult = "7";
+        result = instance.yytext();
+        assertEquals(expResult, result);
+    }
 		
 		//now we will test the nextToken() in our scanner against preset expectations
-        myScanner.nextToken();
-        String expectedResult = "5";
-        String result = myScanner.yytext();
-        assertEquals(expectedResult, result);
-
-        myScanner.nextToken();
-        expectedResult = "*";
-        result = myScanner.yytext();
-        assertEquals(expectedResult, result);
-
-        myScanner.nextToken();
-        expectedResult = " 5";
-        result = myScanner.yytext();
-        assertEquals(expectedResult, result);
-
-        myScanner.nextToken();
-        expectedResult = "/";
-        result = myScanner.yytext();
-        assertEquals(expectedResult, result);
-
-        myScanner.nextToken();
-        expectedResult = "2";
-        result = myScanner.yytext();
-        assertEquals(expectedResult, result);
-
-        myScanner.nextToken();
-        expectedResult = "+";
-        result = myScanner.yytext();
-        assertEquals(expectedResult, result);
-        
-        myScanner.nextToken();
-        expectedResult = "5";
-        result = myScanner.yytext();
-        assertEquals(expectedResult, result);
-        
-        myScanner.nextToken();
-        expectedResult = "<";
-        result = myScanner.yytext();
-        assertEquals(expectedResult, result);
-
-        myScanner.nextToken();
-        expectedResult = "100";
-        result = myScanner.yytext();
-        assertEquals(expectedResult, result);
-    }
-    
-
-	@Test
-	public void testNextToken() throws IOException 
-	{
-		// instantiate the myScanner and setup a sample input 
-		String samplePascal = "program one ; begin Gebru.G end . {comment in parenthesis } ";
-		StringReader input = new StringReader(samplePascal);
-
-		myScannerfromJFLEX myScanner = new myScannerfromJFLEX(input);
-		Token myToken = null;
-
-		// verifying if the program will pickup tokens and identify them accordingly
-		//comments will be ignored 
 		
-		myToken = myScanner.nextToken();
-		System.out.println(myToken);
-		assertEquals(myToken.lexeme, "program");
-		assertEquals(myToken.type, TokenType.PROGRAM);
-
-		myToken = myScanner.nextToken();
-		System.out.println(myToken);
-		assertEquals(myToken.lexeme, "one");
-		assertEquals(myToken.type, TokenType.ID);
-
-		myToken = myScanner.nextToken();
-		System.out.println(myToken);
-		assertEquals(myToken.lexeme, ";");
-		assertEquals(myToken.type, TokenType.SEMICOLON);
-
-		myToken = myScanner.nextToken();
-		System.out.println(myToken);
-		assertEquals(myToken.lexeme, "begin");
-		assertEquals(myToken.type, TokenType.BEGIN);
 		
-		myToken = myScanner.nextToken();
-		System.out.println(myToken);
-		assertEquals(myToken.lexeme, "Gebru.G");
-		assertEquals(myToken.type, TokenType.ID);
+		
+	    /**
+	     * Test of nextToken method, of class ExpScanner.
+	     */
+	    @Test
+	    public void testNextToken() throws Exception 
+	    
+	    {
+	        System.out.println("nextToken");
+	        FileInputStream fis = null;
+	        try {
+	            fis = new FileInputStream("C:\\Users\\betea\\Desktop\\Augsburg Projects folder\\0000 Git Projects\\Compilers II\\gebruCompiler\\Compilerproj\\src\\tests\\SampleInput\\ScannerSampleInput.pas");
+	        } catch (FileNotFoundException ex) {
+	        }
+	        InputStreamReader isr = new InputStreamReader( fis);
+	        
+	        
+	        myScannerfromJFLEX instance = new myScannerfromJFLEX(isr);
+	        
+	        TokenType expResult = TokenType.NUMBER;
+	        TokenType result = instance.nextToken().getType();
+	        assertEquals(expResult, result);
 
-		myToken = myScanner.nextToken();
-		System.out.println(myToken);
-		assertEquals(myToken.lexeme, "end");
-		assertEquals(myToken.type, TokenType.END);
+	        expResult = TokenType.PLUS;
+	        result = instance.nextToken().getType();
+	        assertEquals(expResult, result);
 
-		myToken = myScanner.nextToken();
-		System.out.println(myToken);
-		assertEquals(myToken.lexeme, ".");
-		assertEquals(myToken.type, TokenType.PERIOD);
-	}
+	        expResult = TokenType.NUMBER;
+	        result = instance.nextToken().getType();
+	        assertEquals(expResult, result);
+
+	        expResult = TokenType.MULTIPLY;
+	        result = instance.nextToken().getType();
+	        assertEquals(expResult, result);
+
+	        expResult = TokenType.NUMBER;
+	        result = instance.nextToken().getType();
+	        assertEquals(expResult, result);
+
+	    }
 }
