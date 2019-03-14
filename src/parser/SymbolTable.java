@@ -248,7 +248,6 @@ public class SymbolTable
 		String symTableString = "Symbol Table:";
 		for (String symbolName : mySymbolTable.keySet()) 
 		{
-
 			String key = symbolName.toString();
 			String value = mySymbolTable.get(symbolName).toString();
 			symTableString += "\n  " + value + ": " + key;
