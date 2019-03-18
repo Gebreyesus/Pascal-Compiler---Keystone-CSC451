@@ -45,7 +45,6 @@ public class LookupTable extends HashMap<String,TokenType>
         this.put( "&", TokenType.AND);
         this.put( "/", TokenType.DIVIDE);
         this.put( "*", TokenType.MULTIPLY);
-     
 
     } 
 }

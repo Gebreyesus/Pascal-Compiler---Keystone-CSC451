@@ -22,8 +22,9 @@ public class Token
 	 * @param inputType	 *            represents the type for the lexeme,
 	 * 
 	 */
-	public Token(String inputLexeme, TokenType inputType) 
+	public Token(String content, TokenType inputType) 
 	{
+		String inputLexeme = content.toLowerCase();
 		this.lexeme = inputLexeme;
 		this.type = inputType;
 	}

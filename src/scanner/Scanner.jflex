@@ -42,19 +42,18 @@ package scanner;
   
 %}
 
-/** Patterns defined using regex expressions 
+/** Patterns defined using regex expressions */
     this definitions are exctracted 
     from a grammer provided as input for the project	*/
 
 
-other         = .
 letter        = [A-Za-z]
 digit      	  = [0-9]
 
-lineTerminator = \n
-whitespace     = {lineTerminator} | [ \t]
+lineTerminator = [\n]
+whitespace     = [ \n\t]
 
-symbols       = [ ";" | "," | "." | ":" | "[" | "]" | "(" | ")" | "+" | "-" | "=" | "<>" | "<" | "<=" | ">" | ">=" | "*" | "/" | ":=" ]
+symbols       =  ";" | "," | "." | ":" | "[" | "]" | "(" | ")" | "+" | "-" | "=" | "<>" | "<" | "<=" | ">" | ">=" | "*" | "/" | ":=" 
 
 
 integer 		=  [0-9] | [1-9][0-9]*
@@ -96,11 +95,16 @@ comment =    [{] [^*] ~ [}]
 				}
 		   		
 {posExpression}	{ 
-					Token newToken = new Token( yytext(), posExpression);	
+					Token newToken = new Token( yytext(), TokenType.POSEXP);	
 					return newToken; 
 				}
 	
 {negExpression}	{ 
-					Token newToken = new Token( yytext(), negExpression);	
+					Token newToken = new Token( yytext(), NEGEXP);	
 					return newToken;  
 				}	
+
+.               {   
+					System.out.println("Illegal character, '" + 
+                            yytext() + "' found."); 
+                }

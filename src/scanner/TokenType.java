@@ -15,7 +15,6 @@ public enum TokenType {
     RIGHT_CURLY_PAREN,
     LEFT_CURLY_PAREN,
     
-	RELOP,
 	EQUAL,
 	LESSTHAN,
 	GREATERTHAN,
@@ -23,7 +22,6 @@ public enum TokenType {
     GREATEROREQUAL,
     NOTEQUAL,
         
-	ADDOP,
     PLUS,
     MINUS,
 	OR,
@@ -66,4 +64,8 @@ public enum TokenType {
 	NOT,
 	
 	EOF, 
+	READ, 
+	WRITE, 
+	ERROR
+	
 }
