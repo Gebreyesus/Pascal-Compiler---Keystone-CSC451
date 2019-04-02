@@ -1,0 +1,4 @@
+Program Lesson1;
+Var       
+    Num1, Num2, Sum : Integer;
+	

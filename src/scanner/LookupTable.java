@@ -8,8 +8,7 @@ import java.util.HashMap;
  */
 @SuppressWarnings("serial")
 public class LookupTable extends HashMap<String,TokenType> 
-{
-    
+{    
     /**
      * Creates a lookup table, loading all the token types.
      */
@@ -45,6 +44,30 @@ public class LookupTable extends HashMap<String,TokenType>
         this.put( "&", TokenType.AND);
         this.put( "/", TokenType.DIVIDE);
         this.put( "*", TokenType.MULTIPLY);
+
+        
+    	this.put("and",TokenType.AND);
+		this.put("array",TokenType.ARRAY);
+		this.put("begin",TokenType.BEGIN);
+		this.put("do",TokenType.DO);
+		this.put("else",TokenType.ELSE);
+		this.put("end",TokenType.END);
+		this.put("function",TokenType.FUNCTION);
+		this.put("if",TokenType.IF);
+		this.put("integer",TokenType.INTEGER);
+		this.put("mod",TokenType.MOD);
+		this.put("not",TokenType.NOT);
+		this.put("of",TokenType.OF);
+		this.put("or",TokenType.OR);
+		this.put("procedure",TokenType.PROCEDURE);
+		this.put("program",TokenType.PROGRAM);
+		this.put("real",TokenType.REAL);
+		this.put("then",TokenType.THEN);
+		this.put("var",TokenType.VAR);
+		this.put("while",TokenType.WHILE);	
+		this.put("negexp",TokenType.NEGEXP);	
+		this.put("posexp",TokenType.POSEXP);	
+
 
     } 
 }

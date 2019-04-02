@@ -1,5 +1,5 @@
 package tests;
-
+import java.io.File;
 import static org.junit.Assert.*;
 import org.junit.After;
 import org.junit.Before;
@@ -28,106 +28,174 @@ public class ScannerTest
 	@Before
 	public void setUpClass() throws Exception 	{	}
 	/**
-	 * @throws java.lang.Exception
+	 * @throws java.lang.Exception 
 	 */
 	@After
 	public void tearDownClass() throws Exception 	{	}
 
-	
-	/**
-	 * IN the following two methods we will test that the myScanner with sample input 
-	 * and check if yytext()/nextToken function is interpreting the tokens.
-	 * @throws IOException
-	 */
-
-	
-    @Test
-    public void testYytext() throws IOException 
-    {
-    	System.out.println("Testing the yytext() function ");
-        FileInputStream fis = null;
-               
-        try 
-        {
-            fis = new FileInputStream("SampleInput\\ScannerSampleInput.pas");
-        } catch (FileNotFoundException ex) 
-        {
-        }
-        InputStreamReader isr = new InputStreamReader( fis);
-        myScannerfromJFLEX instance = new myScannerfromJFLEX(isr);
-        //**********
-        System.out.println("Next string extracted->"+instance.yytext());
-        
-        instance.nextToken();
-        String expectedResult = "34";
-        String result = instance.yytext(); System.out.println("xxx"+result);
-        assertEquals(expectedResult, result);
-
-        instance.nextToken();
-        expectedResult = "+";
-        result = instance.yytext();System.out.println("xxx"+result);
-        assertEquals(expectedResult, result);
-
-        instance.nextToken();
-        expectedResult = "17";
-        result = instance.yytext();
-        assertEquals(expectedResult, result);
-
-        instance.nextToken();
-        expectedResult = "*";
-        result = instance.yytext();
-        assertEquals(expectedResult, result);
-
-        instance.nextToken();
-        expectedResult = "7";
-        result = instance.yytext();
-        assertEquals(expectedResult, result);
-    }
+	  
+	    
+		/**
+		 * IN the following two methods we will test that the myScanner with sample input 
+		 * and check if yytext()/nextToken function is interpreting the tokens.
+		 */
 		
-		//now we will test the nextToken() in our scanner against preset expectations
-		
+	    @Test
+	    public void testYytext() throws IOException 
+	    {
+	    	 
+	    	System.out.println("**********************Testing the yytext() ");
+	    	 
+	        //Sample Input
+        	//we have this exp "455*7/4=7" in the input file
+        	// we expect 7 tokens from the input expression 
+        	// 455, *, 7, /, 4, =, 7 are the expected tokens from yytest
+	        File file1 = new File("test/scanner/sample1.txt");
+	       
+	        	if (testFile(file1)) 
+	        	{
+		        	FileInputStream fis =  new FileInputStream(file1);
+		        	InputStreamReader isr = new InputStreamReader( fis);
+		       	        
+		        	myScannerfromJFLEX instance = new myScannerfromJFLEX(isr);
+		              
+		        	instance.nextToken();
+		        	String expectedResult = "455";
+		        	String result = instance.yytext();
+		        	System.out.println("yytext1 Result Found: "+result+" [VS] Expected Result: "+ expectedResult);
+		        	//assertEquals(expectedResult, result);
+	
+		        	instance.nextToken();
+		        	expectedResult = "*";
+		        	result = instance.yytext();
+		        	System.out.println("yytext2 Result Found: "+result+" [VS] Expected Result: "+ expectedResult);
+		        	assertEquals(expectedResult, result);
+		        	
+		        	instance.nextToken();
+		        	expectedResult = "7";
+		        	result = instance.yytext();
+		        	System.out.println("yytext3 Result Found: "+result+" [VS] Expected Result: "+ expectedResult);
+		        	assertEquals(expectedResult, result);
+	
+		        	instance.nextToken();
+		        	expectedResult = "/";
+		        	result = instance.yytext();
+		        	System.out.println("yytext4 Result Found: "+result+" [VS] Expected Result: "+ expectedResult);
+		        	assertEquals(expectedResult, result);
+	
+		        	instance.nextToken();
+		        	expectedResult = "4";
+		        	result = instance.yytext();
+		        	System.out.println("yytext5 Result Found: "+result+" [VS] Expected Result: "+ expectedResult);
+	        		assertEquals(expectedResult, result);
+	           
+	        		instance.nextToken();
+	        		expectedResult = "=";
+	        		result = instance.yytext();
+	        		System.out.println("yytext6 Result Found: "+result+" [VS] Expected Result: "+ expectedResult);
+	        		assertEquals(expectedResult, result);
+	        	
+	        		instance.nextToken();
+	        		expectedResult = "7";
+	        		result = instance.yytext();
+	        		System.out.println("yytext7 Result Found: "+result+" [VS] Expected Result: "+ expectedResult);
+	        		assertEquals(expectedResult, result);
+	        	}
+	        }
+	    
+	    
+	    
 	    /**
-	     * Test of nextToken method, of class ExpScanner.
+	     * Test of nextToken method, of class Scanner.
+	     * we will test the nextToken() in our scanner against preset expectations
 	     */
 	    @Test
 	    public void testNextToken() throws Exception 
-	    
 	    {
-	        System.out.println("Testing the nextToken() function");
+	        System.out.println("**********************Testing the nextToken()");
 	        
-	        FileInputStream fis = null;
-	        try 
+	        //Sample Input
+        	//we have this exp "455*7/4=7" in the input file
+        	// we expect 7 tokens from the input expression 
+        	// Program, Lesson1, ;, Var, Num1, Num2, Sum, :, Integer, ;,   are the expected tokens from nexttoken
+	        File file2 = new File("test/scanner/sample1.txt");
+	        
+	        if (testFile(file2)) 
 	        {
-	            fis = new FileInputStream(".\\SampleInput\\ScannerSampleInput.pas");
-	        } 
-	        catch (FileNotFoundException ex) 
-	        {
+	        
+	        	FileInputStream fis =  new FileInputStream(file2);
+	        	InputStreamReader isr = new InputStreamReader( fis);
+        	        
+	        	myScannerfromJFLEX instance = new myScannerfromJFLEX(isr);
+	        
+	        	TokenType expectedResult = TokenType.NUMBER;
+	        	TokenType result = instance.nextToken().getType();
+	        	System.out.println("testNextToken1 Result Found: "+result+" [VS] Expected Result: "+ expectedResult);
+	        	assertEquals(expectedResult, result);
+
+	        	expectedResult = TokenType.MULTIPLY;
+	        	result = instance.nextToken().getType();
+	        	System.out.println("testNextToken2 Result Found: "+result+" [VS] Expected Result: "+ expectedResult);
+	        	assertEquals(expectedResult, result); 
+	        	
+	        	expectedResult = TokenType.NUMBER;
+	        	result = instance.nextToken().getType();
+	        	System.out.println("testNextToken3 Result Found: "+result+" [VS] Expected Result: "+ expectedResult);
+	        	assertEquals(expectedResult, result);
+
+	        	expectedResult = TokenType.DIVIDE;
+	        	result = instance.nextToken().getType();
+	        	System.out.println("testNextToken4 Result Found: "+result+" [VS] Expected Result: "+ expectedResult);
+	        	assertEquals(expectedResult, result);
+
+	        	expectedResult = TokenType.NUMBER;
+	        	result = instance.nextToken().getType();
+	        	System.out.println("testNextToken5 Result Found: "+result+" [VS] Expected Result: "+ expectedResult);
+	        	assertEquals(expectedResult, result);
+	        	
+	        	expectedResult = TokenType.EQUAL;
+	        	result = instance.nextToken().getType();
+	        	System.out.println("testNextToken6 Result Found: "+result+" [VS] Expected Result: "+ expectedResult);
+	        	assertEquals(expectedResult, result);
+	        	
+	        	expectedResult = TokenType.NUMBER;
+	        	result = instance.nextToken().getType();
+	        	System.out.println("testNextToken7 Result Found: "+result+" [VS] Expected Result: "+ expectedResult);
+	        	assertEquals(expectedResult, result);
 	        }
-	        InputStreamReader isr = new InputStreamReader( fis);
-	        
-	        
-	        myScannerfromJFLEX instance = new myScannerfromJFLEX(isr);
-	        
-	        
-	        TokenType expectedResult = TokenType.NUMBER;
-	        TokenType result = instance.nextToken().getType();
-	        assertEquals(expectedResult, result);
 
-	        expectedResult = TokenType.PLUS;
-	        result = instance.nextToken().getType();
-	        assertEquals(expectedResult, result);
+	  }
+	    
+	    
+	    /**
+		 * test the input file and throw exception here
+		 * will open file if possible and 
+		 *  * @throws IOException : if file is not readable
+		 */
+		public boolean testFile(File input)
+		{
+			 
+			File file = input;
+	                 
+			try (FileInputStream fis = new FileInputStream(file)) 
+			{
+				System.out.println("Testing Input Total file size to read (in bytes) : "+ fis.available());
 
-	        expectedResult = TokenType.NUMBER;
-	        result = instance.nextToken().getType();
-	        assertEquals(expectedResult, result);
-
-	        expectedResult = TokenType.MULTIPLY;
-	        result = instance.nextToken().getType();
-	        assertEquals(expectedResult, result);
-
-	        expectedResult = TokenType.NUMBER;
-	        result = instance.nextToken().getType();
-	        assertEquals(expectedResult, result);
-
-	    }
+				int content;
+				System.out.print("Content of file is : ");
+				while ((content = fis.read()) != -1) 
+				{
+				// convert to char and display it
+				System.out.print((char) content);
+				}
+				return true;
+			} 
+			catch (IOException e) 
+			{
+				//e.printStackTrace();
+				System.out.println("Unreadable file");
+				return false;
+			}
+		
+		}
 }

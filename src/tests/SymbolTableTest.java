@@ -9,6 +9,8 @@ import parser.SymbolTable;
 import parser.SymbolType;
 
 /**
+ * Testing our symbol table 
+ * we will populate the table and do tests on the functions
  * @author Beteab Gebru
  */
 
@@ -16,7 +18,8 @@ public class SymbolTableTest
 {
 
 	SymbolTable table = new SymbolTable();
-
+	
+	//constructor test
 	@Before
 	public void setUp() throws Exception 
 	{
@@ -31,7 +34,8 @@ public class SymbolTableTest
 	@Test
 	public void addTest() 
 	{
-
+		
+		
 		// Populating a sample table for assertion test
 		table.add("programName", SymbolType.PROGRAMTYPE);
 		table.add("variableName", SymbolType.VARIABLETYPE);
@@ -39,14 +43,14 @@ public class SymbolTableTest
 		table.add("procedureName", SymbolType.PROCEDURETYPE);
 		table.add("arrayName", SymbolType.ARRAYTYPE);
 
-		// tests should return true
+		// tests must return true
 		assertTrue(table.isProgramName("programName"));
 		assertTrue(table.isVariableName("variableName"));
 		assertTrue(table.isFunctionName("functionName"));
 		assertTrue(table.isProcedureName("procedureName"));
 		assertTrue(table.isArrayName("arrayName"));
 
-		// tests should return false
+		// tests must return false
 		assertFalse(table.isProgramName("arrayName"));
 		assertFalse(table.isVariableName("functionName"));
 		assertFalse(table.isFunctionName("variableName"));
@@ -56,16 +60,17 @@ public class SymbolTableTest
 		table.toString();
 	}
 
+	
 	@Test
 	public void addProgramNameTest() 
 	{
 
 		table.addProgramName("programName");
 
-		// should yield true
+		// must return true
 		assertTrue(table.isProgramName("programName"));
 
-		// should yield false
+		// must return false
 		assertFalse(table.isArrayName("programName"));
 
 	}
@@ -77,10 +82,10 @@ public class SymbolTableTest
 
 		table.addFunctionName("functionName");
 
-		// should yield true
+		// must return true
 		assertTrue(table.isFunctionName("functionName"));
 
-		// should yield false
+		// must return false
 		assertFalse(table.isProcedureName("functionName"));
 
 	}
@@ -92,10 +97,10 @@ public class SymbolTableTest
 
 		table.addProcedureName("procedureName");
 
-		// should yield true
+		// must return true
 		assertTrue(table.isProcedureName("procedureName"));
 
-		// should yield false
+		// must return false
 		assertFalse(table.isProgramName("procedureName"));
 
 	}
@@ -106,10 +111,10 @@ public class SymbolTableTest
 
 		table.addArrayName("arrayName");
 
-		// should yield true
+		// must return true
 		assertTrue(table.isArrayName("arrayName"));
 
-		// should yield false
+		// must return false
 		assertFalse(table.isProgramName("arrayName"));
 
 	}
@@ -120,10 +125,10 @@ public class SymbolTableTest
 
 		table.addVariableName("variableName");
 
-		// should yield true
+		// must return true
 		assertTrue(table.isVariableName("variableName"));
 
-		// should yield false
+		// must return false
 		assertFalse(table.isProgramName("variableName"));
 
 	}

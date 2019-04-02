@@ -10,7 +10,7 @@ package scanner;
 
 %public                     /* make output class public*/
 %class  myScannerfromJFLEX  /* Names the produced java file */
-%function nextToken			/* renaming  the yylex() function */
+%function nextToken         // name of the token function
 %type   Token      			/* Defines the return type of the scanning function */
 %line                       /* turn on line counting*/
 %column                     /* turn on column counting*/
@@ -37,12 +37,14 @@ package scanner;
    */
   public int getColumn() { return yycolumn;}
   
- /** The lookup table of token types for symbols. */
+ /** 
+  * The lookup table of token types for symbols. 
+  */
   private LookupTable table = new LookupTable();
   
 %}
 
-/** Patterns defined using regex expressions */
+/** Patterns defined using regex expressions 
     this definitions are exctracted 
     from a grammer provided as input for the project	*/
 
@@ -53,7 +55,7 @@ digit      	  = [0-9]
 lineTerminator = [\n]
 whitespace     = [ \n\t]
 
-symbols       =  ";" | "," | "." | ":" | "[" | "]" | "(" | ")" | "+" | "-" | "=" | "<>" | "<" | "<=" | ">" | ">=" | "*" | "/" | ":=" 
+symbol       =  ";" | "," | "." | ":" | "[" | "]" | "(" | ")" | "+" | "-" | "=" | "<>" | "<" | "<=" | ">" | ">=" | "*" | "/" | ":=" 
 
 
 integer 		=  [0-9] | [1-9][0-9]*
@@ -67,11 +69,8 @@ comment =    [{] [^*] ~ [}]
 
 
 %%
+
 /* Lexical Rules -> we will form the tokens and return the token object*/
-
-{whitespace}    { /* Ignore Whitespace */ }
-.               {   System.out.println("Illegal character, whitespace'" + yytext() + "' found."); }
-
 {number}        {	// Found a number
 					Token newToken = new Token( yytext(), TokenType.NUMBER); 
 					return newToken;
@@ -82,9 +81,10 @@ comment =    [{] [^*] ~ [}]
 					return newToken;
 				}
 
-{symbols}       {	// locate lexeme from lookup table for the symbol
+{symbol}       {	// locate lexeme from lookup table for the symbol
                     String inputLexeme = yytext();
-                    TokenType symbolLexeme = table.get( inputLexeme);	//find the token type from lookup table
+                    TokenType symbolLexeme = table.get(inputLexeme);	
+                    
                     Token newToken = new Token( yytext(),  symbolLexeme);
                     return newToken;
                 }
@@ -100,11 +100,12 @@ comment =    [{] [^*] ~ [}]
 				}
 	
 {negExpression}	{ 
-					Token newToken = new Token( yytext(), NEGEXP);	
+					Token newToken = new Token( yytext(), TokenType.NEGEXP);	
 					return newToken;  
 				}	
-
-.               {   
-					System.out.println("Illegal character, '" + 
-                            yytext() + "' found."); 
-                }
+ 
+{whitespace}    { /* Ignore Whitespace */    
+ 				  System.out.println("Illegal character or whitespace: '" +  yytext() + "' found.");
+ 				}
+ 
+  
