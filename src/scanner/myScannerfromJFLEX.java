@@ -32,10 +32,10 @@ public class myScannerfromJFLEX {
    * Translates characters to character classes
    */
   private static final String ZZ_CMAP_PACKED = 
-    "\11\0\1\1\1\1\1\2\1\2\1\2\22\0\1\1\7\0\2\0"+
-    "\1\0\1\6\1\0\1\7\2\0\1\4\11\4\5\0\2\0\4\3"+
-    "\1\5\25\3\1\0\1\0\1\0\3\0\32\3\1\0\1\0\1\0"+
-    "\7\0\1\2\u1fa2\0\1\2\1\2\uffff\0\uffff\0\uffff\0\uffff\0\uffff\0\uffff\0\uffff\0\uffff\0\uffff\0\uffff\0\uffff\0\uffff\0\uffff\0\uffff\0\uffff\0\uffff\0\udfe6\0";
+    "\11\0\1\3\1\3\25\0\1\3\7\0\1\4\1\4\1\4\1\6"+
+    "\1\4\1\7\1\4\1\4\1\2\11\2\1\5\1\4\1\11\1\10"+
+    "\1\12\2\0\4\1\1\13\25\1\1\4\1\0\1\4\3\0\32\1"+
+    "\1\0\1\0\1\0\uffff\0\uffff\0\uffff\0\uffff\0\uffff\0\uffff\0\uffff\0\uffff\0\uffff\0\uffff\0\uffff\0\uffff\0\uffff\0\uffff\0\uffff\0\uffff\0\uff92\0";
 
   /** 
    * Translates characters to character classes
@@ -48,8 +48,8 @@ public class myScannerfromJFLEX {
   private static final int [] ZZ_ACTION = zzUnpackAction();
 
   private static final String ZZ_ACTION_PACKED_0 =
-    "\1\0\1\1\1\2\2\1\2\3\2\4\1\3\5\4"+
-    "\1\0";
+    "\1\0\1\1\1\2\1\3\3\4\1\1\1\2\1\1"+
+    "\5\2\1\0";
 
   private static int [] zzUnpackAction() {
     int [] result = new int[16];
@@ -77,8 +77,8 @@ public class myScannerfromJFLEX {
   private static final int [] ZZ_ROWMAP = zzUnpackRowMap();
 
   private static final String ZZ_ROWMAP_PACKED_0 =
-    "\0\0\0\10\0\10\0\20\0\30\0\20\0\40\0\30"+
-    "\0\50\0\60\0\70\0\100\0\110\0\120\0\130\0\140";
+    "\0\0\0\14\0\30\0\44\0\44\0\60\0\74\0\110"+
+    "\0\124\0\140\0\154\0\170\0\204\0\220\0\234\0\250";
 
   private static int [] zzUnpackRowMap() {
     int [] result = new int[16];
@@ -104,15 +104,17 @@ public class myScannerfromJFLEX {
   private static final int [] ZZ_TRANS = zzUnpackTrans();
 
   private static final String ZZ_TRANS_PACKED_0 =
-    "\1\2\1\3\1\0\1\4\1\5\1\4\2\2\13\0"+
-    "\1\6\1\7\1\6\6\0\1\10\1\11\5\0\1\12"+
-    "\1\7\1\12\6\0\1\13\1\0\1\14\1\15\3\0"+
-    "\1\12\1\0\1\12\6\0\1\13\1\16\6\0\1\13"+
-    "\7\0\1\17\7\0\1\13\1\0\1\14\5\0\1\17"+
-    "\1\20\11\0\1\15";
+    "\1\0\1\2\1\3\1\4\1\5\1\6\3\5\1\7"+
+    "\1\6\1\2\1\0\1\2\1\10\10\0\1\2\2\0"+
+    "\1\3\10\0\1\11\24\0\1\5\13\0\1\5\1\0"+
+    "\1\5\2\0\1\12\1\10\10\0\1\12\2\0\1\13"+
+    "\3\0\1\14\1\15\5\0\1\12\11\0\1\12\2\0"+
+    "\1\13\10\0\1\16\2\0\1\13\13\0\1\17\13\0"+
+    "\1\13\3\0\1\14\7\0\1\17\10\0\1\20\7\0"+
+    "\1\15\4\0";
 
   private static int [] zzUnpackTrans() {
-    int [] result = new int[104];
+    int [] result = new int[180];
     int offset = 0;
     offset = zzUnpackTrans(ZZ_TRANS_PACKED_0, offset, result);
     return result;
@@ -150,7 +152,7 @@ public class myScannerfromJFLEX {
   private static final int [] ZZ_ATTRIBUTE = zzUnpackAttribute();
 
   private static final String ZZ_ATTRIBUTE_PACKED_0 =
-    "\1\0\2\11\14\1\1\0";
+    "\1\0\2\1\2\11\12\1\1\0";
 
   private static int [] zzUnpackAttribute() {
     int [] result = new int[16];
@@ -267,7 +269,7 @@ public class myScannerfromJFLEX {
     char [] map = new char[0x110000];
     int i = 0;  /* index in packed string  */
     int j = 0;  /* index in unpacked array */
-    while (i < 104) {
+    while (i < 100) {
       int  count = packed.charAt(i++);
       char value = packed.charAt(i++);
       do map[j++] = value; while (--count > 0);
@@ -619,22 +621,28 @@ public class myScannerfromJFLEX {
       else {
         switch (zzAction < 0 ? zzAction : ZZ_ACTION[zzAction]) {
           case 1: 
-            { System.out.println("Illegal character, whitespace'" + yytext() + "' found.");
-            }
-          case 5: break;
-          case 2: 
-            { /* Ignore Whitespace */
-            }
-          case 6: break;
-          case 3: 
             { Token newToken = new Token( yytext(), TokenType.ID );		
 					return newToken;
             }
-          case 7: break;
-          case 4: 
+          case 5: break;
+          case 2: 
             { // Found a number
 					Token newToken = new Token( yytext(), TokenType.NUMBER); 
 					return newToken;
+            }
+          case 6: break;
+          case 3: 
+            { /* Ignore Whitespace */    
+ 				  System.out.println("Illegal character or whitespace: '" +  yytext() + "' found.");
+            }
+          case 7: break;
+          case 4: 
+            { // locate lexeme from lookup table for the symbol
+                    String inputLexeme = yytext();
+                    TokenType symbolLexeme = table.get(inputLexeme);	
+                    
+                    Token newToken = new Token( yytext(),  symbolLexeme);
+                    return newToken;
             }
           case 8: break;
           default:
