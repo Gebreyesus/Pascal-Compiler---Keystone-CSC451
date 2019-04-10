@@ -42,9 +42,7 @@ public class SymbolTable
 
 	/**
 	 * adds the variable name
-	 * 
-	 * @param the
-	 *            name of the variable symbol
+	 * @param the  name of the variable symbol
 	 */
 	public void addVariableName(String symbolName) 
 	{
@@ -53,9 +51,7 @@ public class SymbolTable
 
 	/**
 	 * function to add the function name
-	 * 
-	 * @param the
-	 *            name of the function symbol
+	 * @param the  name of the function symbol
 	 */
 	public void addFunctionName(String symbolName) 
 	{
@@ -64,9 +60,7 @@ public class SymbolTable
 
 	/**
 	 * adds the procedure name
-	 * 
-	 * @param the
-	 *            name of the procedure symbol
+	 * @param the name of the procedure symbol
 	 */
 	public void addProcedureName(String symbolName) 
 	{
@@ -75,9 +69,7 @@ public class SymbolTable
 
 	/**
 	 * adds the array name
-	 * 
-	 * @param the
-	 *            name of the array symbol
+	 * @param the name of the array symbol
 	 */
 	public void addArrayName(String symbolName) 
 	{
@@ -86,11 +78,8 @@ public class SymbolTable
 
 	/**
 	 * adds an array name and size to the array table
-	 * 
-	 * @param name
-	 *            of array
-	 * @param size
-	 *            of array
+	 * @param name of array
+	 * @param size of array
 	 */
 	public void addArrayNameTable(String symbolName, Integer size) 
 	{
@@ -99,9 +88,7 @@ public class SymbolTable
 
 	/**
 	 * determines whether or not the symbol is a program
-	 * 
-	 * @param the
-	 *            name of the symbol to be determined
+	 * @param the  name of the symbol to be determined
 	 * @return whether or not the symbol is a program
 	 */
 	public Boolean isProgramName(String symbolName) 
@@ -122,9 +109,7 @@ public class SymbolTable
 
 	/**
 	 * determines whether or not the symbol is a variable
-	 * 
-	 * @param the
-	 *            name of the symbol to be determined
+	 * @param the name of the symbol to be determined
 	 * @return whether or not the symbol is a variable
 	 */
 	public Boolean isVariableName(String symbolName)
@@ -144,9 +129,7 @@ public class SymbolTable
 
 	/**
 	 * determines whether or not the symbol is a function
-	 * 
-	 * @param the
-	 *            name of the symbol to be determined
+	 * @param the name of the symbol to be determined
 	 * @return whether or not the symbol is a function
 	 */
 	public Boolean isFunctionName(String symbolName) 
@@ -166,9 +149,7 @@ public class SymbolTable
 
 	/**
 	 * determines whether or not the symbol is a procedure
-	 * 
-	 * @param the
-	 *            name of the symbol to be determined
+	 * @param the name of the symbol to be determined
 	 * @return whether or not the symbol is a procedure
 	 */
 	public Boolean isProcedureName(String symbolName) 
@@ -222,7 +203,6 @@ public class SymbolTable
 
 	/**
 	 * prints the symbol tablesymbolTableonsole
-	 * 
 	 * @throws FileNotFoundException
 	 */
 	public SymbolType getType(String symbolName) 
@@ -232,7 +212,7 @@ public class SymbolTable
 	
 	/**
 	 * gets the array size for given array name
-	 * @param name  of array
+	 * @param name of array
 	 * @return size of the array
 	 */
 	public Integer getArraySize(String symbolName) 

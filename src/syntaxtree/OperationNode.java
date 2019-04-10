@@ -4,7 +4,7 @@ import scanner.TokenType;
 
 /**
  * Represents any operation in an expression.
- * @author Beteab Gebru
+* @author Erik Steinmetz, Beteab Gebru 
  */
 public class OperationNode extends ExpressionNode {
     

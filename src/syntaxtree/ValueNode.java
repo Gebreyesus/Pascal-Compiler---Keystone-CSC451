@@ -7,7 +7,7 @@ package syntaxtree;
 
 /**
  * Represents a value or number in an expression.
- * @author Beteab Gebru
+ *  @author Erik Steinmetz, Beteab Gebru
  */
 public class ValueNode extends ExpressionNode {
     

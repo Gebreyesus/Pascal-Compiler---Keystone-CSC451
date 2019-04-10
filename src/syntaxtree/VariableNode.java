@@ -3,7 +3,7 @@ package syntaxtree;
 
 /**
  * Represents a variable in the syntax tree.
- * @author Beteab Gebru
+ * @author Erik Steinmetz, Beteab Gebru
  */
 public class VariableNode extends ExpressionNode {
     

@@ -7,7 +7,7 @@ import java.util.ArrayList;
  * Represents a compound statement in Pascal.
  * A compound statement is a block of zero or more
  * statements to be run sequentially.
- * @author Beteab Gebru
+ * @author Erik Steinmetz, Beteab Gebru
  */
 public class CompoundStatementNode extends StatementNode {
     
@@ -21,6 +21,10 @@ public class CompoundStatementNode extends StatementNode {
         this.statements.add( state);
     }
     
+    public void addAllStateNodes(ArrayList<StatementNode> nodes) 
+    {
+		statements.addAll(nodes);
+	}
     /**
      * Creates a String representation of this compound statement node 
      * and its children.

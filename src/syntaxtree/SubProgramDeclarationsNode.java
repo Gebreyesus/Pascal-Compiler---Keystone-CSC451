@@ -5,33 +5,44 @@ import java.util.ArrayList;
 
 /**
  * Represents a collection of subprogram declarations.
- * @author Beteab Gebru
+ * @author Erik Steinmetz, Beteab Gebru
  */
 public class SubProgramDeclarationsNode extends SyntaxTreeNode 
 {
     
-    private ArrayList<SubProgramDeclarationsNode> procs = new ArrayList<SubProgramDeclarationsNode>();
+    private ArrayList<SubProgramNode> subProgramsList = new ArrayList<SubProgramNode>();
     
-    public void addSubProgramDeclaration( SubProgramDeclarationsNode aSubProgram) 
+    public void addSubProgramDeclaration( SubProgramNode mySubProgram) 
     {
-        procs.add( aSubProgram);
+    	subProgramsList.add( mySubProgram);
     }
-    
+	public void addAll(ArrayList<SubProgramNode> aSubProgram) 
+	{
+		subProgramsList.addAll(aSubProgram);//apend the list
+	}
+	public ArrayList<SubProgramNode> getSubProgs() {
+		return this.subProgramsList;
+	}
     /**
-     * Creates a String representation of this node and its children.
-     * @param level The tree level at which this node resides.
-     * @return A String representing this node.
+     * Output will be syntax tree, with indentation used to mark level on the tree.
+     * @param level shows where on the tree the node resides
+     * @return A String representing this node(tokens).
      */
     @Override
     public String indentedToString( int level) 
     {
         String answer = this.indentation( level);
         answer += "SubProgramDeclarations\n";
-        //for( SubProgramDeclarationsNode subProg : procs) 
-        //{
-          //  answer += subProg.indentedToString( level + 1);
-        //}
+        for( SubProgramNode subProgram : subProgramsList) 
+        {
+        	answer += subProgram.indentedToString(level + 1);
+        }
         return answer;
     }
+
+	 
     
 }
+
+
+
