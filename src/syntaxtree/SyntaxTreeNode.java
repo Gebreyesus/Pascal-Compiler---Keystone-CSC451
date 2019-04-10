@@ -4,7 +4,7 @@ package syntaxtree;
 
 /**
  * The base class for all nodes in a syntax tree.
- * @author Beteab Gebru
+ * @author Erik Steinmetz, Beteab Gebru
  */
 public abstract class SyntaxTreeNode {
     

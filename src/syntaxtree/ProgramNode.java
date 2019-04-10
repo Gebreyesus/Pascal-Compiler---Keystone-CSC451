@@ -3,7 +3,7 @@ package syntaxtree;
 
 /**
  * Represents a Pascal Program
- * @author Beteab Gebru
+* @author Erik Steinmetz, Beteab Gebru
  */
 public class ProgramNode extends SyntaxTreeNode {
     

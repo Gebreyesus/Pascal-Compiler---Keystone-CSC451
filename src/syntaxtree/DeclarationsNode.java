@@ -5,7 +5,7 @@ import java.util.ArrayList;
 
 /**
  * Represents a set of declarations in a Pascal program.
- * @author Beteab Gebru
+ * @author Erik Steinmetz, Beteab Gebru
  */
 public class DeclarationsNode extends SyntaxTreeNode {
     
@@ -15,7 +15,8 @@ public class DeclarationsNode extends SyntaxTreeNode {
      * Adds a variable to this declaration.
      * @param aVariable The variable node to add to this declaration.
      */
-    public void addVariable( VariableNode aVariable) {
+    public void addVariable( VariableNode aVariable) 
+    {
         vars.add( aVariable);
     }
     

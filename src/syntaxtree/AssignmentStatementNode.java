@@ -3,7 +3,7 @@ package syntaxtree;
 
 /**
  * Represents a single assignment statement.
- * @author Beteab Gebru
+ * @author Erik Steinmetz, Beteab Gerbu
  */
 public class AssignmentStatementNode extends StatementNode {
     
