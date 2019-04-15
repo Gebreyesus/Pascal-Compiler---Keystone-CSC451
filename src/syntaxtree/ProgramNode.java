@@ -1,45 +1,63 @@
 
 package syntaxtree;
-
+import java.util.ArrayList;
 /**
  * Represents a Pascal Program
 * @author Erik Steinmetz, Beteab Gebru
  */
-public class ProgramNode extends SyntaxTreeNode {
+public class ProgramNode extends SyntaxTreeNode 
+{
     
     
     private String name;
     private DeclarationsNode variables;
     private SubProgramDeclarationsNode functions;
     private CompoundStatementNode main;
+    private ArrayList<String> allVariableNames;
     
-    public ProgramNode( String aName) {
+    public ProgramNode( String aName) 
+    {
         this.name = aName;
     }
 
-    public DeclarationsNode getVariables() {
+    public DeclarationsNode getVariables() 
+    {
         return variables;
     }
 
-    public void setVariables(DeclarationsNode variables) {
+    public void setVariables(DeclarationsNode variables) 
+    {
         this.variables = variables;
     }
 
-    public SubProgramDeclarationsNode getFunctions() {
+    public SubProgramDeclarationsNode getFunctions() 
+    {
         return functions;
     }
 
-    public void setFunctions(SubProgramDeclarationsNode functions) {
+    public void setFunctions(SubProgramDeclarationsNode functions) 
+    {
         this.functions = functions;
     }
 
-    public CompoundStatementNode getMain() {
+    public CompoundStatementNode getMain() 
+    {
         return main;
     }
 
-    public void setMain(CompoundStatementNode main) {
+    public void setMain(CompoundStatementNode main) 
+    {
         this.main = main;
     }
+	public ArrayList<String> getAllVarNames() 
+	{
+		return this.allVariableNames;
+	}
+	public void setAllVarNames(ArrayList<String> allVarNames) {
+		this.allVariableNames = allVarNames;
+	}
+ 
+
     
     /**
      * Creates a String representation of this program node and its children.
@@ -47,7 +65,8 @@ public class ProgramNode extends SyntaxTreeNode {
      * @return A String representing this node.
      */
     @Override
-    public String indentedToString( int level) {
+    public String indentedToString( int level) 
+    {
         String answer = this.indentation( level);
         answer += "Program: " + name + "\n";
         answer += variables.indentedToString( level + 1);
@@ -55,4 +74,8 @@ public class ProgramNode extends SyntaxTreeNode {
         answer += main.indentedToString( level + 1);
         return answer;
     }
+    
+ 
+
+
 }
