@@ -47,8 +47,8 @@ public class ArrayNode extends VariableNode
 		public String indentedToString(int level) {
 			String answer = this.indentation(level);
 			answer += "Array: " + super.getName() + ", Type: " + type + "\n";
-			if (exp != null) {
-				answer += this.exp.indentedToString(level + 1);
+			if (this.expression != null) {
+				answer += this.expression.indentedToString(level + 1);
 			}
 			return answer;
 		}
