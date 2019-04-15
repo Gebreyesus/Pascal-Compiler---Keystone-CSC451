@@ -11,8 +11,8 @@ import java.util.ArrayList;
 public class ProcedureNode extends StatementNode {
 
 	private VariableNode variable = null;
-	private ArrayList<ExpressionNode> expNode = new ArrayList();
-
+	private ArrayList<ExpressionNode> expNode = new ArrayList<ExpressionNode>();
+	   
 	public void addExpNode(ExpressionNode input) {
 		expNode.add(input);
 	}
