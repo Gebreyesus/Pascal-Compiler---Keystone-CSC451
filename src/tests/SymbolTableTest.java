@@ -64,7 +64,6 @@ public class SymbolTableTest
 	@Test
 	public void addProgramNameTest() 
 	{
-
 		table.addProgramName("programName");
 
 		// must return true

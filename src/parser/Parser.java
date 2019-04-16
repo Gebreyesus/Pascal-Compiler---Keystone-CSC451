@@ -111,7 +111,7 @@ public class Parser
      */
     public void match( TokenType expected) 
     {
-        System.out.println("Matching (" + expected + ") with token from lookAhead");
+        System.out.println("Matching (" + expected + ") with token from lookAhead("+this.lookAhead.getType().toString()+")");
         
         if( this.lookAhead.getType() == expected) 
         {

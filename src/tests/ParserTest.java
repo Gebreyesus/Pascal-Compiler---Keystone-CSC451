@@ -36,98 +36,209 @@ public class ParserTest
 	@Test
 	public void testProgram() 
 	{
-		boolean ValidCode = true;
-		Parser happyPascal = new Parser("test/parser/program_test_pass.pas", true);
-		Parser badPascal = new Parser("test/parser/program_test_fail.pas", true);
+		boolean validCode = true;
+		Parser happyPascal = new Parser("test/parser/program_pass.pas", true);
+		Parser badPascal = new Parser("test/parser/program_fail.pas", true);
 
 		try 
 		{
 			happyPascal.program();
-			System.out.println("Passed tests - valid P code");
+			System.out.println("Passed tests - valid pascal program()");
 		} 
 		catch (Exception e) 
 		{
-			ValidCode = false;
-			System.out.println("Failed to recognise P Code");
+			validCode = false;
+			System.out.println("Failed to recognise Pascal program()");
 		}
 
 		try 
 		{
-			happyPascal.program();
-			System.out.println("Fail to find a valid program");
-			ValidCode = false;
+			badPascal.program();
+			System.out.println("Failed to find a valid program()");
+			validCode = false;
 		} 
 		catch (Exception e) 
 		{
-			System.out.println("Program found");
+			System.out.println("Program() found\n");
 		}
 
-		assertTrue(ValidCode);
+		assertTrue(validCode);
 	}
 	
  
 	@Test
 	public void testDeclarations() 
 	{
-		boolean allTrue = true;
+		boolean allPassed = true;
 
-		Parser pPass = new Parser("test/parser/declaration_test_pass.pas", true);
-		Parser pFail = new Parser("test/parser/declaration_test_fail.pas", true);
+		Parser happyPascal = new Parser("test/parser/declaration_pass.pas", true);
+		Parser badPascal = new Parser("test/parser/declaration_fail.pas", true);
 
-		// should pass
+		// pass
 		try 
 		{
-			pPass.declarations();
-			System.out.println("Declaration Passed");
+			happyPascal.declarations();
+			System.out.println("Valid Declaration() found");
 		} 
 		catch (Exception e) 
 		{
-			allTrue = false;
-			System.out.println("No declaration found");
+			allPassed = false;
+			System.out.println("failed to find valid Declarations()");
+		}
+
+		try 
+		{
+			badPascal.declarations();
+			System.out.println("failed to find valid Declarations()");
+			allPassed = false;
+		} 
+		catch (Exception e) 
+		{
+			System.out.println("Valid Declaration() found\\n");
+		}
+		System.out.println();
+		assertTrue(allPassed);
+	}
+	 
+	@Test
+	public void testSubprogramDeclarations() 
+	{
+		boolean allPassed = true;
+
+		Parser passTest = new Parser("test/parser/subprogramdeclarations_pass.pas", true);
+		Parser failTest = new Parser("test/parser/subprogramdeclarations_fail.pas", true);
+ 
+		try 
+		{
+			passTest.subprogram_declaration();
+			System.out.println(" Valid Subprogram() found");
+		} 
+		catch (Exception e) 
+		{
+			allPassed = false;
+			System.out.println("failed to find valid Subprogram  ");
+		}
+ 
+		try 
+		{
+			failTest.subprogram_declaration();
+			System.out.println("failed to find valid Subprogram() ");
+			allPassed = false;
+		} 
+		catch (Exception e) 
+		{
+			System.out.println("Valid Subprogram() found\\n");
+		}
+
+		System.out.println();
+		assertTrue(allPassed);
+
+	}
+	
+	@Test
+	public void testStatement() 
+	{
+		boolean allPassed = true;
+		
+		Parser happyPascal = new Parser("test/parser/statement_pass.pas", true);
+		Parser badPascal = new Parser("test/parser/statement_fail.pas", true);
+
+		happyPascal.addToTable("someVar", SymbolType.VARIABLETYPE);
+		
+		try 
+		{
+			happyPascal.statement();
+			System.out.println(" Valid Statement() found");
+		} 
+		catch (Exception e) 
+		{
+			allPassed = false;
+			System.out.println("failed to find valid Statement()");
+		}
+
+		try 
+		{
+			badPascal.statement();
+			System.out.println("failed to find valid Statement()");
+			allPassed = false;
+		} catch (Exception e) {
+			System.out.println("Valid Statement() found\\n");
+		}
+
+		System.out.println();
+		assertTrue(allPassed);
+	}
+
+ 
+	@Test
+	public void testSimpleExpression() 
+	{
+		boolean allPassed = true;
+
+		Parser happyPascal = new Parser("test/parser/simpleexpression_pass.pas", true);
+		Parser badPascal = new Parser("test/parser/simpleexpression_fail.pas", true);
+
+		// should pass
+		try 
+		{
+			happyPascal.simple_expression();
+			System.out.println("Valid SimpleExpression() found");
+		} 
+		catch (Exception e) 
+		{
+			allPassed = false;
+			System.out.println("failed to find valid SimpleExpression()");
+		}
+ 
+		try 
+		{
+			badPascal.simple_expression();
+			System.out.println("failed to find valid SimpleExpression()");
+			allPassed = false;
+		} 
+		catch (Exception e) 
+		{
+			System.out.println("Valid SimpleExpression() found\n");
+		}
+
+		System.out.println();
+		assertTrue(allPassed);
+	}
+
+ 
+	@Test
+	public void testFactor() 
+	{
+		boolean allPassed = true;
+
+		Parser happyPascal = new Parser("test/parser/factor_pass.pas", true);
+		Parser badPascal = new Parser("test/parser/factor_fail.pas", true);
+
+		// should pass
+		try {
+			happyPascal.factor();
+			System.out.println("Valid Factor() found");
+		} 
+		catch (Exception e) 
+		{
+			allPassed = false;
+			System.out.println("failed to find valid Factor()");
 		}
 
 		// should catch
 		try 
 		{
-			pFail.declarations();
-			System.out.println("Declaration failed");
-			allTrue = false;
-		} catch (Exception e) 
+			badPascal.factor();
+			System.out.println("failed to find valid Factor()");
+			allPassed = false;
+		} 
+		catch (Exception e) 
 		{
-			System.out.println("Declaration Passed");
-		}
-		System.out.println();
-		assertTrue(allTrue);
-	}
-	 
-	@Test
-	public void testSubprogramDeclarations() {
-		boolean allTrue = true;
-
-		Parser pPass = new Parser("test/parser/subprogramdeclarations_test_pass.pas", true);
-		Parser pFail = new Parser("test/parser/subprogramdeclarations_test_fail.pas", true);
-
-		// should pass
-		try {
-			pPass.subprogram_declaration();
-			System.out.println("Subprogram Declaration pass");
-		} catch (Exception e) {
-			allTrue = false;
-			System.out.println("Subprogram Declaration part fail");
-		}
-
-		// should catch
-		try {
-			pFail.subprogram_declaration();
-			System.out.println("Subprogram Declaration fail");
-			allTrue = false;
-		} catch (Exception e) {
-			System.out.println("Subprogram Declaration pass");
+			System.out.println("Valid Factor() found\n");
 		}
 
 		System.out.println();
-		assertTrue(allTrue);
-
+		assertTrue(allPassed);
 	}
 
 }
