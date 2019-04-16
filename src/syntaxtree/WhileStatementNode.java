@@ -3,40 +3,42 @@ package syntaxtree;
 /**
  * Represents a while statement
  * 
- * @author Joseph Miller <miller12 @ augsburg.edu>
- * @version JDK/JRE 1.8.0_141
+ * * @author Beteab Gebru
  */
-public class WhileStatementNode extends StatementNode {
+public class WhileStatementNode extends StatementNode 
+{
 
-	private ExpressionNode test; // The test to be checked on each iteration of the while loop
-	private StatementNode doW; // The statement to be executed on each iteration
+	private ExpressionNode test; //check each iteration in the while loop
+	private StatementNode doW; // check at each iteration
 
-	public void setTest(ExpressionNode test) {
+	public void setTest(ExpressionNode test) 
+	{
 		this.test = test;
 	}
 
-	public void setDoStatement(StatementNode doW) {
+	public void setDoStatement(StatementNode doW) 
+	{
 		this.doW = doW;
 	}
 
-	public ExpressionNode getTest() {
+	public ExpressionNode getTest() 
+	{
 		return test;
 	}
 
-	public StatementNode getDo() {
+	public StatementNode getDo() 
+	{
 		return doW;
 	}
 
 	/**
-	 * Creates a String representation of this while statement node and its
-	 * children.
-	 * 
-	 * @param level
-	 *            The tree level at which this node resides.
+	 * Creates a String representation of this while statement node+children.
+	 * @param level The tree level 
 	 * @return A String representing this node.
 	 */
 	@Override
-	public String indentedToString(int level) {
+	public String indentedToString(int level) 
+	{
 		String answer = this.indentation(level);
 		answer += "While:\n";
 		answer += this.test.indentedToString(level + 1);
