@@ -34,7 +34,7 @@ public class Token
     ///////////////////////////////
 	
 	public String getLexeme() {		return this.lexeme;	}
-	public TokenType getType() 	{		return this.type; }
+	public TokenType getType() 	{	return this.type; }
 
     ///////////////////////////////
     //       Methods

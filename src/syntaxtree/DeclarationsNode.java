@@ -24,6 +24,10 @@ public class DeclarationsNode extends SyntaxTreeNode {
     {
     	variables.addAll(aVariable.variables);
 	}
+    public ArrayList<VariableNode> getDeclarations() {
+		return this.variables;
+
+	}
     
     /**
      * Creates a String representation of this declarations node and its children.
@@ -47,8 +51,10 @@ public class DeclarationsNode extends SyntaxTreeNode {
      * @param level The tree level at which this node resides.
      * @return A String representing this node.
      */
-	public void addVariable(ArrayNode arrayNode) 
+	public void addVariable(ArrayNode arrayVariable) 
 	{
-		// TODO Auto-generated method stub
+		variables.add(arrayVariable);
 	}
+
+	
 }

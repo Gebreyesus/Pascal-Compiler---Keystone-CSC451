@@ -1,0 +1,7 @@
+codegenerator
+compiler
+parser
+scanner
+semanticanalyser
+syntaxtree
+tests

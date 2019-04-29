@@ -15,7 +15,7 @@ package scanner;
 %line                       /* turn on line counting*/
 %column                     /* turn on column counting*/
 
-%eofval{ 	/* return on end of file */
+%eofval{ /* return on end of file */
   return null;
 %eofval}
 
@@ -40,7 +40,7 @@ package scanner;
  /** 
   * The lookup table of token types for symbols. 
   */
-  private LookupTable table = new LookupTable();
+  private LookupTable mytable = new LookupTable();
   
 %}
 
@@ -51,22 +51,24 @@ package scanner;
 
 letter        = [A-Za-z]
 digit      	  = [0-9]
+digits        = ({digit})({digit}*)
+ 
 
-lineTerminator = [\n]
-whitespace     = [ \n\t]
+symbol        = ";" | "," | "." | ":" | "[" | "]" | "(" | ")" | "+" | "-" | "=" | "<>" | "<" | "<=" | ">" | ">=" | "*" | "/" | ":=" 
 
-symbol       =  ";" | "," | "." | ":" | "[" | "]" | "(" | ")" | "+" | "-" | "=" | "<>" | "<" | "<=" | ">" | ">=" | "*" | "/" | ":=" 
+integer 		= [0-9] | [1-9][0-9]*
+posExponent 	= [0-9]+ "E" [0-9]* | [0-9]+ "E+" [0-9]*
+negExponent 	= [0-9]+ "E-" [0-9]*
+exponent 		= {posExponent}|{negExponent}
+fraction 		= ([.])({digits})
+number     		= {digits}|{fraction}|{exponent}|{integer}
 
+id              = ({letter}+)({letter}|{digit})*
 
-integer 		=  [0-9] | [1-9][0-9]*
-posExpression 	=    [0-9]+ "E" [0-9]* | [0-9]+ "E+" [0-9]*
-negExpression 	=    [0-9]+ "E-" [0-9]*
+whitespace      = [ \n\t\r]|(([\{])([^\{])*([\}]))
+comment			= [{] [^*] ~ [}]
 
-word          = {letter}+ | {letter}+[0-9]+{letter}*
-number     =	 {digit}+ | {integer}+ | {posExpression}+ | {negExpression}+
-
-comment =    [{] [^*] ~ [}]
-
+other           = .
 
 %%
 
@@ -81,31 +83,51 @@ comment =    [{] [^*] ~ [}]
 					return newToken;
 				}
 
-{symbol}       {	// locate lexeme from lookup table for the symbol
+{symbol}        {	// locate lexeme from lookup table for the symbol
                     String inputLexeme = yytext();
-                    TokenType symbolLexeme = table.get(inputLexeme);	
+                    TokenType symbolLexeme = mytable.get(inputLexeme);	
                     
                     Token newToken = new Token( yytext(),  symbolLexeme);
                     return newToken;
                 }
 
-{word}     		{ 	
-					Token newToken = new Token( yytext(), TokenType.ID );		
-					return newToken;
+{id}     		{ 	/*if word is not in our lookup table return token else return ID token*/	
+								
+					TokenType newType = mytable.get(yytext());
+					if(newType != null)
+					{
+						Token newToken = new Token( yytext(), newType);
+               			return newToken;
+             		}
+             		else
+             		{
+             			Token newToken = new Token( yytext(), TokenType.ID);
+                		return newToken;
+             		}
+             		 
 				}
 		   		
-{posExpression}	{ 
+{posExponent}	{ 
 					Token newToken = new Token( yytext(), TokenType.POSEXP);	
 					return newToken; 
 				}
 	
-{negExpression}	{ 
+{negExponent}	{ 
 					Token newToken = new Token( yytext(), TokenType.NEGEXP);	
 					return newToken;  
 				}	
  
-{whitespace}    { /* Ignore Whitespace */    
- 				  System.out.println("Illegal character or whitespace: '" +  yytext() + "' found.");
- 				}
- 
+ 				
+{whitespace} 	{
+					//if(( yytext().charAt(0) == '{') && (yytext().charAt( yytext().length() - 1) == '}'))
+					//{
+                     //	System.out.println("Comment: " + yytext());
+ 					//}
+ 					//else
+						//System.out.println("whitespace: ':-" +  yytext() + "'-: found.");
+				}
+				
+{other}   	 	{ 
+            		//System.out.println("Illegal Char: " + yytext() + " found.");
+           		}
   

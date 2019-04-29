@@ -71,8 +71,10 @@ public class SyntaxTreeTest
 		parse = new Parser("test/syntaxtree/bitcoin Bad Pascal Program.pas", true);
 		parseTree = parse.program().indentedToString(0);
 		if (parseTree == expectedResult)
+		{
+			System.out.println("*************sytax text");
 			assertTrue(false);
-		else
+		}else
 			assertTrue(true);
 
 		

@@ -33,7 +33,38 @@ public class ScannerTest
 	@After
 	public void tearDownClass() throws Exception 	{	}
 
-	  
+	 
+    /**
+	 * test the input file and throw exception here
+	 * will open file if possible and 
+	 *  * @throws IOException : if file is not readable
+	 */
+	public boolean testFile(File input)
+	{
+		 
+		File file = input;
+                 
+		try (FileInputStream fis = new FileInputStream(file)) 
+		{
+			System.out.println("Testing Input Total file size to read (in bytes) : "+ fis.available());
+
+			int content;
+			System.out.print("Content of file is : ");
+			while ((content = fis.read()) != -1) 
+			{
+			// convert to char and display it
+			System.out.print((char) content);
+			}
+			return true;
+		} 
+		catch (IOException e) 
+		{
+			//e.printStackTrace();
+			System.out.println("Unreadable file");
+			return false;
+		}
+	
+	}
 	    
 		/**
 		 * IN the following two methods we will test that the myScanner with sample input 
@@ -128,6 +159,7 @@ public class ScannerTest
         	        
 	        	myScannerfromJFLEX instance = new myScannerfromJFLEX(isr);
 	        
+	        	
 	        	TokenType expectedResult = TokenType.NUMBER;
 	        	TokenType result = instance.nextToken().getType();
 	        	System.out.println("testNextToken1 Result Found: "+result+" [VS] Expected Result: "+ expectedResult);
@@ -166,36 +198,71 @@ public class ScannerTest
 
 	  }
 	    
-	    
-	    /**
-		 * test the input file and throw exception here
-		 * will open file if possible and 
-		 *  * @throws IOException : if file is not readable
-		 */
-		public boolean testFile(File input)
-		{
-			 
-			File file = input;
-	                 
-			try (FileInputStream fis = new FileInputStream(file)) 
-			{
-				System.out.println("Testing Input Total file size to read (in bytes) : "+ fis.available());
-
-				int content;
-				System.out.print("Content of file is : ");
-				while ((content = fis.read()) != -1) 
-				{
-				// convert to char and display it
-				System.out.print((char) content);
-				}
-				return true;
-			} 
-			catch (IOException e) 
-			{
-				//e.printStackTrace();
-				System.out.println("Unreadable file");
-				return false;
-			}
+	   
 		
-		}
+		   /**
+	     * Test of nextToken method, of class Scanner.
+	     * we will test the nextToken() in our scanner against preset expectations
+	     */
+	    @Test
+	    public void testNextTokenIdentifiers() throws Exception 
+	    {
+	        System.out.println("**********************Testing IDs()");
+	        
+	        //Sample Input
+        	//we have this exp "455*7/4=7" in the input file
+        	// we expect 7 tokens from the input expression 
+        	// Program, Lesson1, ;, Var, Num1, Num2, Sum, :, Integer, ;,   are the expected tokens from nexttoken
+	        File file2 = new File("test/scanner/sample2.txt");
+	         
+	        if (testFile(file2)) 
+	        {
+	        
+	        	FileInputStream fis =  new FileInputStream(file2);
+	        	InputStreamReader isr = new InputStreamReader( fis);
+        	        
+	        	myScannerfromJFLEX instance = new myScannerfromJFLEX(isr);
+	        	
+	        	//instance.nextToken();
+	        	//String expectedResult1 = "Var";
+	        	//String result1 = instance.yytext();
+	        	
+	        
+	        	TokenType expectedResult = TokenType.ID;
+	        	TokenType result = instance.nextToken().getType();
+	        	System.out.println("testNextToken1 Result Found: "+result+" [VS] Expected Result: "+ expectedResult);
+	        	assertEquals(expectedResult, result);
+
+	        	expectedResult = TokenType.ID;
+	        	result = instance.nextToken().getType();
+	        	System.out.println("testNextToken2 Result Found: "+result+" [VS] Expected Result: "+ expectedResult);
+	        	assertEquals(expectedResult, result); 
+	        	
+	        	expectedResult = TokenType.SEMICOLON;
+	        	result = instance.nextToken().getType();
+	        	System.out.println("testNextToken3 Result Found: "+result+" [VS] Expected Result: "+ expectedResult);
+	        	assertEquals(expectedResult, result);
+
+	        	expectedResult = TokenType.ID;
+	        	result = instance.nextToken().getType();
+	        	System.out.println("testNextToken4 Result Found: "+result+" [VS] Expected Result: "+ expectedResult);
+	        	assertEquals(expectedResult, result);
+
+	        	expectedResult = TokenType.ID;
+	        	result = instance.nextToken().getType();
+	        	System.out.println("testNextToken5 Result Found: "+result+" [VS] Expected Result: "+ expectedResult);
+	        	assertEquals(expectedResult, result);
+	        	
+	        	expectedResult = TokenType.COMMA;
+	        	result = instance.nextToken().getType();
+	        	System.out.println("testNextToken6 Result Found: "+result+" [VS] Expected Result: "+ expectedResult);
+	        	assertEquals(expectedResult, result);
+	        	
+	        	expectedResult = TokenType.ID;
+	        	result = instance.nextToken().getType();
+	        	System.out.println("testNextToken7 Result Found: "+result+" [VS] Expected Result: "+ expectedResult);
+	        	assertEquals(expectedResult, result);
+	        }
+
+	  }
 }
