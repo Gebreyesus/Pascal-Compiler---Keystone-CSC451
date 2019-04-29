@@ -40,4 +40,8 @@ public class CompoundStatementNode extends StatementNode {
         }
         return answer;
     }
+
+	public ArrayList<StatementNode> getStateNodes() {
+		return this.statements;
+	}
 }
