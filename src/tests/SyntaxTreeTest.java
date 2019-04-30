@@ -32,6 +32,8 @@ public class SyntaxTreeTest
 	public void test() 
 	{
 		
+
+		
 		// testing for a program tree --> valid program should be detected
 		//expectedResult is how our program should understand 
 		// the program input file (bitcoin.pascal)
@@ -64,7 +66,6 @@ public class SyntaxTreeTest
 							   + "|-- --- --- Name: yen\n"
 							   + "|-- --- Write\n" 
 							   + "|-- --- --- Name: bitcoins\n" + "";
-		System.out.println("Sytax PASS TEST****");
 		assertEquals(expectedResult, parseTree);
 		
 		// testing for a program tree --> valid program should be detected
@@ -75,11 +76,36 @@ public class SyntaxTreeTest
 		{
 			System.out.println("*************sytax text");
 			assertTrue(false);
-		}else
+		}
+		else
 			assertTrue(true);
 
+	
+		
+		
+		// if-then test (variable vs number operation )
+		//
+		//
+		parse = new Parser("test/syntaxtree/if_then_var_num.pas", true);
+		parseTree = parse.program().indentedToString(0);
+		System.out.println(parseTree);
+
+		expectedResult = "Program: ifNum\n" + "|-- Declarations\n" + "|-- --- Name: a\n" + "|-- --- Name: b\n"
+				+ "|-- --- Name: c\n" + "|-- --- Name: d\n" + "|-- SubProgramDeclarations\n"
+				+ "|-- Compound Statement\n" + "|-- --- Assignment\n" + "|-- --- --- Name: a\n"
+				+ "|-- --- --- Value: 4\n" + "|-- --- Assignment\n" + "|-- --- --- Name: b\n" + "|-- --- --- Value: 5\n"
+				+ "|-- --- If\n" + "|-- --- --- Operation: LESSTHAN\n" + "|-- --- --- --- Name: a\n"
+				+ "|-- --- --- --- Value: 10\n" + "|-- --- --- Assignment\n" + "|-- --- --- --- Name: a\n"
+				+ "|-- --- --- --- Value: 1\n" + "|-- --- --- Assignment\n" + "|-- --- --- --- Name: b\n"
+				+ "|-- --- --- --- Value: 2\n" + "";
+
+		assertEquals(expectedResult, parseTree);
+		
 		
 	}
+	
+	
+	
 	
 	
 }

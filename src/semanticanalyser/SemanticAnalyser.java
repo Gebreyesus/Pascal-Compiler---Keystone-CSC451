@@ -88,7 +88,7 @@ public class SemanticAnalyser
 	}
 
 	/**
-	 * @param compStatNode
+	 * @param compoundStatementNode
 	 */
 	private void assignTypeToExp(CompoundStatementNode compStatNode) 
 	{

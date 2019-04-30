@@ -230,7 +230,7 @@ public class SymbolTable
 		{
 			String key = symbolName.toString();
 			String value = mySymbolTable.get(symbolName).toString();
-			symTableString += "\n  " + value + ": " + key;
+			symTableString += "\n  " + value + " : " + key;
 		}
 		return symTableString;
 	}
