@@ -23,7 +23,7 @@ public class SemanticAnalyserTest
 
 		//  pass test - valid program test
 		
-		Parser parse = new Parser("test/parser/program_pass.pas", true);//bitcoin.pas
+		Parser parse = new Parser("test/syntaxtree/bitcoin Good Pascal Program.pas", true);//bitcoin.pas
 		SemanticAnalyser semAnalysis = new SemanticAnalyser(parse.program(), parse.getSymbolTable());
 
 		String parseTree = semAnalysis.analyze().indentedToString(0);
@@ -60,7 +60,7 @@ public class SemanticAnalyserTest
 
 		// fail test - bad pascal
 		
-		parse = new Parser("test/syntaxtree/illegal.pas", true);
+		parse = new Parser("test/syntaxtree/bitcoin bad Pascal Program.pas", true);
 		semAnalysis = new SemanticAnalyser(parse.program(), parse.getSymbolTable());
 		parseTree = semAnalysis.analyze().indentedToString(0);
 		if (parseTree == expectedResult)

@@ -1,4 +1,4 @@
-package testing;
+package tests;
 
 import static org.junit.Assert.*;
 
@@ -11,7 +11,7 @@ import codegenerator.CodeGenerator;
 import semanticanalyser.SemanticAnalyser;
 import syntaxtree.ProgramNode;
 
-public class CodeGenerationTest 
+public class CodeGeneratorTest 
 {
 
 	@Before
@@ -28,10 +28,8 @@ public class CodeGenerationTest
 	public void test() 
 	{
 
-		//
 		// Testing for assignment-bitcoin.pas
-		//
-
+		
 		Parser parse = new Parser("test/codegen/assignment_bitcoin.pas", true);
 		SemanticAnalyser semAnalysis = new SemanticAnalyser(parse.program(), parse.getSymbolTable());
 		ProgramNode progNode = semAnalysis.analyze();
@@ -58,33 +56,9 @@ public class CodeGenerationTest
 				+ "li  $v0, 10 \n";
 		assertEquals(expectedResult, assembly);
 
-		//
-		// testing for an if statement where statement is false
-		//
+		
 
-		parse = new Parser("test/codegen/if_statement_F.pas", true);
-		semAnalysis = new SemanticAnalyser(parse.program(), parse.getSymbolTable());
-		progNode = semAnalysis.analyze();
-		codeGen = new CodeGenerator(progNode, parse.getSymbolTable());
-		codeGen.generate();
-		assembly = codeGen.getAsmCode();
-
-		expectedResult = ".data\n" + "\n" + "uno : .word 0\n" + "input:  .asciiz  \"Input: \" \n"
-				+ "newLine: .asciiz \"\\n\"\n" + "\n" + ".text\n" + "\n" + "main:\n" + "\n" + "#Assignment Statement\n"
-				+ "\n" + "#Expression statement\n" + "li   $s0,   10\n" + "sw  $s0,   uno\n" + "\n" + "# If statement\n"
-				+ "\n" + "#Expression statement\n" + "lw   $s0,  uno\n" + "\n" + "#Expression statement\n"
-				+ "li   $s1,   20\n" + "ble   $s0,   $s1,   else0\n" + "\n" + "#Write Statement\n" + "\n"
-				+ "#Expression statement\n" + "li   $s0,   10\n" + "addi   $v0,   $zero,   1\n"
-				+ "add   $a0,   $s0,   $zero\n" + "syscall\n" + "li   $v0,   4\n" + "la   $a0, newLine\n" + "syscall\n"
-				+ "j  endIf0\n" + "else0:\n" + "\n" + "#Write Statement\n" + "\n" + "#Expression statement\n"
-				+ "li   $s1,   20\n" + "addi   $v0,   $zero,   1\n" + "add   $a0,   $s1,   $zero\n" + "syscall\n"
-				+ "li   $v0,   4\n" + "la   $a0, newLine\n" + "syscall\n" + "endIf0:\n" + "\n" + "\n"
-				+ "#Exit Program \n" + "li  $v0, 10 \n";
-		assertEquals(expectedResult, assembly);
-
-		//
-		// testing for an if statement where statement is true
-		//
+		// testing for an if statement: case - statement is true
 
 		parse = new Parser("test/codegen/if_statement_T.pas", true);
 		semAnalysis = new SemanticAnalyser(parse.program(), parse.getSymbolTable());
@@ -105,11 +79,31 @@ public class CodeGenerationTest
 				+ "li   $v0,   4\n" + "la   $a0, newLine\n" + "syscall\n" + "endIf0:\n" + "\n" + "\n"
 				+ "#Exit Program \n" + "li  $v0, 10 \n";
 		assertEquals(expectedResult, assembly);
+		
+		// testing for an if statement: case - statement is false
+		
+		parse = new Parser("test/codegen/if_statement_F.pas", true);
+		semAnalysis = new SemanticAnalyser(parse.program(), parse.getSymbolTable());
+		progNode = semAnalysis.analyze();
+		codeGen = new CodeGenerator(progNode, parse.getSymbolTable());
+		codeGen.generate();
+		assembly = codeGen.getAsmCode();
 
-		//
+		expectedResult = ".data\n" + "\n" + "uno : .word 0\n" + "input:  .asciiz  \"Input: \" \n"
+				+ "newLine: .asciiz \"\\n\"\n" + "\n" + ".text\n" + "\n" + "main:\n" + "\n" + "#Assignment Statement\n"
+				+ "\n" + "#Expression statement\n" + "li   $s0,   10\n" + "sw  $s0,   uno\n" + "\n" + "# If statement\n"
+				+ "\n" + "#Expression statement\n" + "lw   $s0,  uno\n" + "\n" + "#Expression statement\n"
+				+ "li   $s1,   20\n" + "ble   $s0,   $s1,   else0\n" + "\n" + "#Write Statement\n" + "\n"
+				+ "#Expression statement\n" + "li   $s0,   10\n" + "addi   $v0,   $zero,   1\n"
+				+ "add   $a0,   $s0,   $zero\n" + "syscall\n" + "li   $v0,   4\n" + "la   $a0, newLine\n" + "syscall\n"
+				+ "j  endIf0\n" + "else0:\n" + "\n" + "#Write Statement\n" + "\n" + "#Expression statement\n"
+				+ "li   $s1,   20\n" + "addi   $v0,   $zero,   1\n" + "add   $a0,   $s1,   $zero\n" + "syscall\n"
+				+ "li   $v0,   4\n" + "la   $a0, newLine\n" + "syscall\n" + "endIf0:\n" + "\n" + "\n"
+				+ "#Exit Program \n" + "li  $v0, 10 \n";
+		assertEquals(expectedResult, assembly);
+
 		// testing for a while statement
-		//
-
+		
 		parse = new Parser("test/codegen/while_statement.pas", true);
 		semAnalysis = new SemanticAnalyser(parse.program(), parse.getSymbolTable());
 		progNode = semAnalysis.analyze();
@@ -130,10 +124,8 @@ public class CodeGenerationTest
 				+ "j whileDoNum0\n" + "endWhile0:\n" + "\n" + "\n" + "#Exit Program \n" + "li  $v0, 10 \n";
 		assertEquals(expectedResult, assembly);
 
-		//
 		// testing for a read statement
-		//
-
+		
 		parse = new Parser("test/codegen/read_statement.pas", true);
 		semAnalysis = new SemanticAnalyser(parse.program(), parse.getSymbolTable());
 		progNode = semAnalysis.analyze();

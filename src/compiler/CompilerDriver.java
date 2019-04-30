@@ -9,8 +9,8 @@ import semanticanalyser.SemanticAnalyser;
 import syntaxtree.ProgramNode;
 
 /**
- * driver for the compiler, creates and prints MIPs assembly, symbol table, and
- * syntax tree files
+ * driver for the compiler, creates and prints MIPs assembly code
+ * Will write out the  symbol table, and syntax tree into files
  * 
  @author Beteab Gebru
  */
@@ -28,11 +28,11 @@ public class CompilerDriver
 	public static void main(String[] args) 
 	{
 
-		// taking in the argument which should be a filename in this case
+		// taking in the argument which should be a filename 
 		filename = args[0];
-		parse = new Parser(filename, true);
+		parse = new Parser(filename, true);//"test/parser/program_pass.pas"
 
-		String noExtFileName = filename.substring(0, filename.lastIndexOf('.'));
+		String noExtFileName = filename.substring(0, filename.lastIndexOf('.')); // "test/parser/program_pass.pas"
 
 		// Creates symbol table and parse tree strings
 		ProgramNode progNode = parse.program();
@@ -50,8 +50,8 @@ public class CompilerDriver
 		String symbolTable = parse.getSymbolTableStr();
 
 		// prints the tree and the symbol table to the console
-		// System.out.print(parseTree);
-		// System.out.print(symbolTable);
+		System.out.print(parseTree);
+		System.out.print(symbolTable);
 
 		// Code generation
 		codeGen = new CodeGenerator(progNode, parse.getSymbolTable());
