@@ -56,8 +56,8 @@ public class SymbolTableTest
 		assertFalse(table.isFunctionName("variableName"));
 		assertFalse(table.isProcedureName("programName"));
 		assertFalse(table.isArrayName("procedureName"));
-
-		table.toString();
+		
+		System.out.print(table.toString());
 	}
 
 	
