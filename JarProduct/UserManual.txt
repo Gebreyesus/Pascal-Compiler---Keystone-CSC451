@@ -9,6 +9,6 @@ Instructions.
 3. Tyep: "java -jar MiniPascal.jar <path to the pascal code.pas>" and click enter
 
 NOTE to user:
-In its current shape the file will not handle some important data types such as arrays and floating numbers
-In addition there are some major bugs which will be fixed in next release 
+-In its current shape the file will not handle some important data types such as arrays and floating numbers
+-In addition there are some major bugs which will be fixed in next release (prob with parser)
 	-> this will serve as demonstration in the meantime

@@ -10,6 +10,9 @@ import parser.Parser;
 import codegenerator.CodeGenerator;
 import semanticanalyser.SemanticAnalyser;
 import syntaxtree.ProgramNode;
+/**
+ * @author beteab gebru
+ */
 
 public class CodeGeneratorTest 
 {
