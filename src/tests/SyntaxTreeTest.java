@@ -37,7 +37,7 @@ public class SyntaxTreeTest
 		// the program input file (bitcoin.pascal)
 		Parser parse = new Parser("test/syntaxtree/bitcoin Good Pascal Program.pas", true);
 		String parseTree = parse.program().indentedToString(0);
-		 
+		System.out.println("Sytax PASS TEST");
 		String expectedResult =  "Program: BitcoinConversion\n" 
 							   + "|-- Declarations\n" 
 							   + "|-- --- Name: dollars\n"
@@ -64,10 +64,11 @@ public class SyntaxTreeTest
 							   + "|-- --- --- Name: yen\n"
 							   + "|-- --- Write\n" 
 							   + "|-- --- --- Name: bitcoins\n" + "";
+		System.out.println("Sytax PASS TEST****");
 		assertEquals(expectedResult, parseTree);
 		
 		// testing for a program tree --> valid program should be detected
-		
+		System.out.println("Sytax FAIL TEST");
 		parse = new Parser("test/syntaxtree/bitcoin Bad Pascal Program.pas", true);
 		parseTree = parse.program().indentedToString(0);
 		if (parseTree == expectedResult)
