@@ -96,8 +96,8 @@ public class CodeGenerator
 
 	/**
 	 * creates code for statements, calls methods depending on their statement type
-	 * @param statement     node
-	 * @param current       register
+	 * @param statement node
+	 * @param current register
 	 */
 	private void codeStatement(StatementNode statNode, String reg) 
 	{
@@ -137,9 +137,7 @@ public class CodeGenerator
 
 	/**
 	 * method for creating subprogram nodes
-	 * 
-	 * @param subprogram
-	 *            node
+	 * @param subprogram node
 	 */
 	private void codeSubprogs(SubProgramNode subNode) 
 	{
@@ -148,7 +146,7 @@ public class CodeGenerator
 
 	/**
 	 * creates the code for assignments
-	 * @param assignment  node
+	 * @param assignment node
 	 * @param current register
 	 */
 	private void codeAssignment(AssignmentStatementNode assignNode, String reg) 
@@ -191,8 +189,8 @@ public class CodeGenerator
 
 	/**
 	 * creates the code for while statements
-	 * @param while          node
-	 * @param current      register
+	 * @param while node
+	 * @param current register
 	 */
 	private void codeWhile(WhileStatementNode whileStat, String reg) 
 	{
@@ -218,7 +216,7 @@ public class CodeGenerator
 
 	/**
 	 * creates the code for procedures, not needed yet
-	 * @param procedure     node
+	 * @param procedure node
 	 */
 	private void codeProc(ProcedureNode procStat)
 	{
@@ -227,8 +225,8 @@ public class CodeGenerator
 
 	/**
 	 * creates code for if statements
-	 * @param if        statement node
-	 * @param current   register
+	 * @param if statement node
+	 * @param current register
 	 */
 	private void codeIf(IfStatementNode ifStat, String reg) 
 	{
@@ -266,7 +264,7 @@ public class CodeGenerator
 
 	/**
 	 * creates code for read statements
-	 * @param read     node
+	 * @param read node
 	 */
 	private void codeRead(ReadNode readNode) 
 	{
@@ -279,8 +277,8 @@ public class CodeGenerator
 
 	/**
 	 * creates code for write statements, adds new line after writing to console
-	 * @param write     node
-	 * @param current     register
+	 * @param write node
+	 * @param current register
 	 */
 	private void codeWrite(WriteNode writeNode, String reg) 
 	{
@@ -292,8 +290,8 @@ public class CodeGenerator
 
 	/**
 	 * creates code for expressions
-	 *  @param expression       node
-	 * @param current      register
+	 *  @param expression node
+	 * @param current register
 	 */
 	private void codeExp(ExpressionNode expNode, String reg) 
 	{
@@ -323,8 +321,8 @@ public class CodeGenerator
 
 	/**
 	 * creates code for a value
-	 * @param value       node
-	 * @param current     register
+	 * @param value node
+	 * @param current register
 	 */
 	private void codeValue(ValueNode valNode, String reg) 
 	{
@@ -335,8 +333,8 @@ public class CodeGenerator
 
 	/**
 	 * creates code for an operation
-	 * @param operation     node
-	 * @param current       register
+	 * @param operation node
+	 * @param current register
 	 */
 	private void codeOperation(OperationNode opNode, String reg) 
 	{
@@ -391,8 +389,8 @@ public class CodeGenerator
 
 	/**
 	 * creates code for array nodes
-	 * @param array  node
-	 * @param current   register
+	 * @param array node
+	 * @param current register
 	 */
 	private void codeArray(ArrayNode arrNode, String reg) 
 	{
