@@ -1,6 +1,7 @@
 ﻿######################################################
 # Ignoring various files from the IDE(Eclipse) #
 ######################################################
+.gitignore
 .classpath
 .project
 .metadata
