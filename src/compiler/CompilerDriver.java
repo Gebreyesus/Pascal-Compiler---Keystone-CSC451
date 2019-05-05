@@ -17,8 +17,6 @@ import syntaxtree.ProgramNode;
 public class CompilerDriver 
 {
 	
-
-
 	// Instance Variables
 	public static Parser parse;
 	public static String filename;
@@ -31,8 +29,9 @@ public class CompilerDriver
 		// taking in the argument which should be a filename 
 		filename = args[0];
 		parse = new Parser(filename, true);//"test/parser/program_pass.pas"
-
-		String noExtFileName = filename.substring(0, filename.lastIndexOf('.')); // "test/parser/program_pass.pas"
+		
+		String PascalCode = filename.substring(0, filename.lastIndexOf('.')); 
+		// "test/parser/program_pass.pas"
 
 		// Creates symbol table and parse tree strings
 		ProgramNode progNode = parse.program();
@@ -40,40 +39,38 @@ public class CompilerDriver
 		// creates semantic analysis object given the program node
 		semAnalysis = new SemanticAnalyser(progNode, parse.getSymbolTable());
 
-		// progNode is now analyzed
-		progNode = semAnalysis.analyze();
-
-		// semantic analysis is analyzed and put into a string
+		// progNode is now analyzed using semantic analysis and made out to a string
+		progNode = semAnalysis.analyze();		
 		String parseTree = progNode.indentedToString(0);
 
 		// symbol table is put into a string
 		String symbolTable = parse.getSymbolTableStr();
 
 		// prints the tree and the symbol table to the console
-		System.out.print(parseTree);
-		System.out.print(symbolTable);
+		//System.out.print(parseTree);
+		//System.out.print(symbolTable);
 
-		// Code generation
+		// Code generation - creates asm code from our progNode
 		codeGen = new CodeGenerator(progNode, parse.getSymbolTable());
-		// generates the code
 		codeGen.generate();
+		
 		// gets the string containing the asm code
 		String asmCode = codeGen.getAsmCode();
 
-		// System.out.println(parseTree);
+		//System.out.println(parseTree);
 		//System.out.println(asmCode);
 
-		// prints the symbol table to a text file called [input name].table
+		// prints the symbol table to a text file called [inputname].table
 		PrintWriter symTabWriter;
 		try 
 		{
-			symTabWriter = new PrintWriter(noExtFileName + ".table");
+			symTabWriter = new PrintWriter(PascalCode + ".table");
 			symTabWriter.println(symbolTable);
 			symTabWriter.close();
 		} 
 		catch (FileNotFoundException e) 
 		{
-			System.out.println("Problem created/overwriting table output file");
+			System.out.println("unable to create file - Table file");
 			e.printStackTrace();
 		}
 
@@ -81,26 +78,27 @@ public class CompilerDriver
 		PrintWriter pareseTreeWriter;
 		try 
 		{
-			pareseTreeWriter = new PrintWriter(noExtFileName + ".tree");
+			pareseTreeWriter = new PrintWriter(PascalCode + ".tree");
 			pareseTreeWriter.println(parseTree);
 			pareseTreeWriter.close();
 		} 
 		catch (FileNotFoundException e) 
 		{
-			System.out.println("Problem created/overwriting tree output file");
+			System.out.println("unable to create file - tree output file");
 			e.printStackTrace();
 		}
 
 		// prints the parse tree to a text file called [input name].tree
 		PrintWriter asmWriter;
-		try {
-			asmWriter = new PrintWriter(noExtFileName + ".asm");
+		try 
+		{
+			asmWriter = new PrintWriter(PascalCode + ".asm");
 			asmWriter.println(asmCode);
 			asmWriter.close();
 		} 
 		catch (FileNotFoundException e) 
 		{
-			System.out.println("Problem created/overwriting asm output file");
+			System.out.println("unable to create file - asm output file");
 			e.printStackTrace();
 		}
 

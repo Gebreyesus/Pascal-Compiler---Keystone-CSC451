@@ -6,7 +6,8 @@ package syntaxtree;
  * The base class for all nodes in a syntax tree.
  * @author Erik Steinmetz, Beteab Gebru
  */
-public abstract class SyntaxTreeNode {
+public abstract class SyntaxTreeNode 
+{
     
     /**
      * Creates a String representation of this node and its children.
@@ -20,7 +21,8 @@ public abstract class SyntaxTreeNode {
      * @param level The amount of indentation.
      * @return A String displaying the given amount of indentation.
      */
-    protected String indentation( int level) {
+    protected String indentation( int level) 
+    {
         String answer = "";
         if( level > 0) {
             answer = "|-- ";
